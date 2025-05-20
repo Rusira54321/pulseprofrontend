@@ -1,7 +1,34 @@
-import React from 'react'
-import {Link} from "react-router-dom"
+import React, { useState } from 'react'
+import axios from "axios"
+import {toast,Bounce} from "react-toastify"
+import {Link,useNavigate} from "react-router-dom"
 import loginimage from "../Login/login.jpg"
 const Login = () => {
+    const navigate = useNavigate()
+    const URL = "http://localhost:5000/auth/authgym"
+    const [username,setusername] = useState('')
+    const [password,setPassword] = useState('')
+    const handlesubmit = async(e)=>{
+        e.preventDefault()
+        await axios.post(URL,{
+            username:username,
+            password:password
+        }).then(()=>{
+            navigate("/gymdash")
+        }).catch((error)=>{
+            toast.warn(error.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+        })
+    } 
   return (
     <div className='flex justify-center items-center h-screen bg-black'>
         <div className='w-3/4 bg-gray-200 h-3/4 flex rounded-2xl'>
@@ -20,7 +47,7 @@ const Login = () => {
                                     <p className='text-white mt-2'>User Name</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='text' className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='text' onChange={(e)=>{setusername(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
                     </div>
                     <div className='flex ml-17 mr-8 font-mono mt-10'>
@@ -28,12 +55,17 @@ const Login = () => {
                                     <p className='text-white mt-2'>Password</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='password' className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='password' onChange={(e)=>{setPassword(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
+                    </div>
+                    <div className='flex justify-end'>
+                            <div>
+                                <p className='font-mono mr-10 mt-2 text-white'><Link to="/email">Forget password</Link></p>
+                            </div>
                     </div>
                     <div className='flex justify-center mt-10'>
                         <div className='h-6 w-20 bg-gray-300 flex justify-center items-center'>
-                                <button type="submit" className='font-mono cursor-pointer'>Login</button>
+                                <button type="submit" className='font-mono cursor-pointer' onClick={handlesubmit}>Login</button>
                         </div>
                     </div>
                     <div className='font-mono flex justify-center mt-1 text-white'>

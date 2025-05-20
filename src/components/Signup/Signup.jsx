@@ -1,7 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from "axios"
+import {Bounce,toast} from "react-toastify"
 import {Link} from "react-router-dom"
 import loginimage from "./login1.jpg"
 function Signup() {
+
+    const URL = "http://localhost:5000/auth/addgym"
+    const [gymname,setgymname] = useState('')
+    const [username,setusername] = useState('')
+    const [email,setemail] = useState('')
+    const [password,setpassword] = useState('')
+    const handleSubmit = async(e) =>{
+        e.preventDefault()
+        await axios.post(URL,{
+            gymname:gymname,
+            username:username,
+            email:email,
+            password:password
+        }).then(()=>{
+                toast.success('Signup successfull', {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                                transition: Bounce,
+                                });
+        }).catch((error)=>{
+            toast.warn(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                        });
+        })
+    }
   return (
     <div className='flex justify-center items-center h-screen bg-black'>
         <div className='w-3/4 bg-gray-200 h-3/4 flex rounded-2xl'>
@@ -20,7 +61,7 @@ function Signup() {
                                     <p className='text-white mt-2'>Gym Name</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='text' className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='text' onChange={(e)=>{setgymname(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
                     </div>
                     <div className='flex ml-17 mr-8 font-mono mt-10'>
@@ -28,7 +69,7 @@ function Signup() {
                                     <p className='text-white mt-2'>User Name</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='text' className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='text' onChange={(e)=>{setusername(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
                     </div>
                     <div className='flex ml-17 mr-8 font-mono mt-10'>
@@ -36,7 +77,7 @@ function Signup() {
                                     <p className='text-white mt-2'>Email</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='email' className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='email' onChange={(e)=>{setemail(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
                     </div>
                     <div className='flex ml-17 mr-8 font-mono mt-10'>
@@ -44,12 +85,12 @@ function Signup() {
                                     <p className='text-white mt-2'>Password</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='password' className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='password' onChange={(e)=>{setpassword(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
                     </div>
                     <div className='flex justify-center mt-10'>
                         <div className='h-6 w-20 bg-gray-300 flex justify-center items-center'>
-                                <button type="submit" className='font-mono cursor-pointer'>Sign Up</button>
+                                <button type="submit" className='font-mono cursor-pointer' onClick={handleSubmit}>Sign Up</button>
                         </div>
                     </div>
                     <div className='font-mono flex justify-center mt-2 text-white'>
