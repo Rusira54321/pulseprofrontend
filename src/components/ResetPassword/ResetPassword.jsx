@@ -26,7 +26,7 @@ const ResetPassword = () => {
                                 theme: "light",
                                 transition: Bounce,
                                 });
-                navigate("/")  
+                navigate("/login")  
         }).catch((error)=>{
                 toast.warn(error.response.data.message, {
                         position: "top-right",

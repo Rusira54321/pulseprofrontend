@@ -94,7 +94,7 @@ function Signup() {
                         </div>
                     </div>
                     <div className='font-mono flex justify-center mt-2 text-white'>
-                        <p>Already have an account <Link to="/">LogIn</Link></p>
+                        <p>Already have an account <Link to="/login">LogIn</Link></p>
                     </div>
                 </form>
             </div>
