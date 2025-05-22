@@ -23,13 +23,13 @@ const Homenavbar = () => {
               <Link to="/" className="text-gray-300 hover:text-indigo-400 font-medium">
                 Home
               </Link>
-              <Link to="/member" className="text-gray-300 hover:text-indigo-400 font-medium">
+              <Link to="/member/login" className="text-gray-300 hover:text-indigo-400 font-medium">
                 Member
               </Link>
               <Link to="/login" className="text-gray-300 hover:text-indigo-400 font-medium">
                 Admin
               </Link>
-              <Link to="/trainer" className="text-gray-300 hover:text-indigo-400 font-medium">
+              <Link to="/trainer/login" className="text-gray-300 hover:text-indigo-400 font-medium">
                 Trainer
               </Link>
             </div>

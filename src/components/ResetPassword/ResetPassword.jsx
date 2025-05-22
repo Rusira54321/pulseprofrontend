@@ -27,6 +27,7 @@ const ResetPassword = () => {
                                 transition: Bounce,
                                 });
                 navigate("/login")  
+                localStorage.removeItem("email")
         }).catch((error)=>{
                 toast.warn(error.response.data.message, {
                         position: "top-right",

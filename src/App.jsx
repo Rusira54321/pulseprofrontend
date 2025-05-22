@@ -10,6 +10,10 @@ import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
 import Homenavbar from './components/Homenavbar/Homenavbar'
 import Addtrainer from './components/addtrainer/Addtrainer'
+import Trainerlogin from './components/Trainerlogin/Trainerlogin'
+import Memberlogin from './components/memberlogin/Memberlogin'
+import Trainerdashboard from './components/trainerdashboard/Trainerdashboard'
+import Addmember from './components/Addmember/Addmember'
 function App() {
 
   return (
@@ -21,14 +25,18 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path='/member/login' element={<Memberlogin/>}/>
           <Route path="email" element={<Email />} />
           <Route path="otp" element={<Otp />} />
+          <Route path='/trainer/login' element={<Trainerlogin/>}/>
           <Route path="reset" element={<ResetPassword />} />
         </Route>
 
         {/* Standalone route (not using Homenavbar) */}
         <Route path="/trainer" element={<Addtrainer/>}/>
+        <Route path='/trainer/dashboard' element={<Trainerdashboard/>}/>
         <Route path="/gymdash" element={<Gymdashboard />} />
+        <Route path='/addmember' element={<Addmember/>}/>
       </Routes>
     </div>
   )

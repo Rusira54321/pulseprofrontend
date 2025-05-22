@@ -13,8 +13,10 @@ const Login = () => {
         await axios.post(URL,{
             username:username,
             password:password
-        }).then(()=>{
+        }).then((res)=>{
             navigate("/gymdash")
+            localStorage.setItem("token",res.data.token)
+            localStorage.setItem("gymkey",username)
         }).catch((error)=>{
             toast.warn(error.response.data.message, {
                     position: "top-right",
@@ -28,7 +30,8 @@ const Login = () => {
                     transition: Bounce,
                     });
         })
-    } 
+    }
+   
   return (
     <div className='flex justify-center items-center h-screen bg-black'>
         <div className='w-3/4 bg-gray-200 h-3/4 flex rounded-2xl'>
@@ -47,7 +50,7 @@ const Login = () => {
                                     <p className='text-white mt-2'>User Name</p>
                                 </div>
                                 <div className='w-3/4 h-full'>
-                                    <input type='text' onChange={(e)=>{setusername(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
+                                    <input type='text' value={username} onChange={(e)=>{setusername(e.target.value)}} className='w-full border border-gray-400 rounded px-3 py-2 text-white'/>
                                 </div>
                     </div>
                     <div className='flex ml-17 mr-8 font-mono mt-10'>

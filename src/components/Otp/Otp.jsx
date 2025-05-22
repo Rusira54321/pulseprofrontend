@@ -26,7 +26,7 @@ const Otp = () => {
                                 theme: "light",
                                 transition: Bounce,
                                 });
-                                localStorage.removeItem("email")
+                                
                     navigate("/reset")
             }).catch((error)=>{
                         toast.warn(error.response.data.message, {

@@ -14,6 +14,7 @@ const Addtrainer = () => {
   const handleSubmit = async(e) =>{
     e.preventDefault()
     const formdata = new FormData()
+    const key = localStorage.getItem("gymkey")
     formdata.append("profile",profile)
     formdata.append("name",name)
     formdata.append("username",username)
@@ -22,8 +23,14 @@ const Addtrainer = () => {
     formdata.append("phone",phone)
     formdata.append("gender",gender)
     formdata.append("dob",dob)
+    formdata.append("key",key)
     const url = "http://localhost:5000/multer/upload"
-    await axios.post(url,formdata).then(()=>{
+    const token = localStorage.getItem("token")
+    await axios.post(url,formdata,{
+        headers:{
+            "Authorization":`Bearer ${token}`
+        }       
+    }).then(()=>{
         toast.success('Trainer added successfully', {
                                 position: "top-right",
                                 autoClose: 5000,
@@ -85,7 +92,7 @@ const Addtrainer = () => {
                         <div className='flex gap-2'>
                              <p className='text-white ml-25 mt-4 w-1/2'>Gender</p>
                              <select required onChange={(e)=>{setgender(e.target.value)}} className='w-1/2 mr-15 mt-4 border border-gray-400 rounded px-3 py-2 text-white'>
-                                 <option value="" disabled className='bg-gray-800'>Select gender</option>
+                                 <option value="" className='bg-gray-800'>Select gender</option>
                                 <option value="Male" className='bg-gray-800'>Male</option>
                                 <option value="Female" className='bg-gray-800'>Female</option>
                                 <option value="Other" className='bg-gray-800'>Other</option>
