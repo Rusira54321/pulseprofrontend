@@ -9,6 +9,7 @@ import Otp from './components/Otp/Otp'
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
 import Homenavbar from './components/Homenavbar/Homenavbar'
+import Addtrainer from './components/addtrainer/Addtrainer'
 function App() {
 
   return (
@@ -26,6 +27,7 @@ function App() {
         </Route>
 
         {/* Standalone route (not using Homenavbar) */}
+        <Route path="/trainer" element={<Addtrainer/>}/>
         <Route path="/gymdash" element={<Gymdashboard />} />
       </Routes>
     </div>
