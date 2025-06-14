@@ -14,7 +14,7 @@ const Login = () => {
             username:username,
             password:password
         }).then((res)=>{
-            navigate("/gymdash")
+            navigate("/admin/dashbaord")
             localStorage.setItem("token",res.data.token)
             localStorage.setItem("gymkey",username)
         }).catch((error)=>{

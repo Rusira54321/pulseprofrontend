@@ -62,7 +62,7 @@ const Addtrainer = () => {
             <div className='w-1/2 h-full bg-amber-200 rounded-l-2xl flex'>
                 <img src={gymtrainer} className='w-full h-full object-cover object-top rounded-l-2xl'/>
             </div>
-            <div className='w-1/2 h-full bg-gray-900 rounded-r-2xl'>
+            <div className='w-3/4 h-full bg-gray-900 rounded-r-2xl'>
                     <form className='flex flex-col'>
                         <div className='flex justify-center'>
                             <div>

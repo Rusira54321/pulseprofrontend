@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
-
+import Footer from "../footer/Footer"
 const Homenavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -77,6 +77,7 @@ const Homenavbar = () => {
       {/* Main Content with Padding */}
       <div>
         <Outlet />
+        <Footer/>
       </div>
     </>
   );

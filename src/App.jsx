@@ -6,6 +6,7 @@ import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
 import Email from './components/Email/Email'
 import Otp from './components/Otp/Otp'
+import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
 import Homenavbar from './components/Homenavbar/Homenavbar'
@@ -33,10 +34,13 @@ function App() {
         </Route>
 
         {/* Standalone route (not using Homenavbar) */}
-        <Route path="/trainer" element={<Addtrainer/>}/>
         <Route path='/trainer/dashboard' element={<Trainerdashboard/>}/>
-        <Route path="/gymdash" element={<Gymdashboard />} />
-        <Route path='/addmember' element={<Addmember/>}/>
+        <Route path='/admin/dashbaord' element={<Layout/>}>
+            <Route index element={Gymdashboard}/>
+            <Route path="trainer" element={<Addtrainer/>}/>
+            <Route path='addmember' element={<Addmember/>}/>
+        </Route>
+        
       </Routes>
     </div>
   )
