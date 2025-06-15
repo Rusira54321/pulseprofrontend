@@ -2,7 +2,7 @@ import React from 'react'
 
 const Gymdashboard = () => {
   return (
-    <div>
+    <div className='flex w-full min-h-full bg-gray-700'>
       
     </div>
   )

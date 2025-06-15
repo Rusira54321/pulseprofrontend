@@ -4,6 +4,7 @@ import Gymdashboard from './components/gymdashboard/gymdashboard'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
+import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Otp from './components/Otp/Otp'
 import Members from './components/displaymembers/Members'
@@ -37,7 +38,8 @@ function App() {
         {/* Standalone route (not using Homenavbar) */}
         <Route path='/trainer/dashboard' element={<Trainerdashboard/>}/>
         <Route path='/admin/dashbaord' element={<Layout/>}>
-            <Route index element={Gymdashboard}/>
+            <Route path='displaytrainer' element={<Displaytrainers/>}/>
+            <Route index element={<Gymdashboard/>}/>
             <Route path="trainer" element={<Addtrainer/>}/>
             <Route path='addmember' element={<Addmember/>}/>
             <Route path='displayMember' element={<Members/>}/>

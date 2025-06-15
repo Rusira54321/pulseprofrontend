@@ -39,6 +39,13 @@ const Sidebar = () => {
           <Flame size={20} />
           <span>display Members</span>
         </Link>
+        <Link
+          to="/admin/dashbaord/displaytrainer"
+          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+        >
+          <Dumbbell size={20} />
+          <span>Display trainer</span>
+        </Link>
       </nav>
     </div>
   )

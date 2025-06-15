@@ -35,7 +35,6 @@ const Members = () => {
             "key":key
         }).then((res)=>{
             setmembers(res.data.member)
-            console.log(res.data.member)
         })
     }
     getmembers()
@@ -66,7 +65,7 @@ const Members = () => {
                                               <div className="absolute w-[120px] h-[120px] rounded-full bg-amber-400 blur-xl opacity-50"></div>
                                             <img src={`http://localhost:5000/images/${member.profileimage}`}  className='w-[120px] h-[120px] rounded-full object-cover bg-amber-100 transition-transform duration-300 hover:scale-110 z-10'></img>
                                         </div>
-                                        <div className='flex mt-3 text-yellow-100 font-bold text-lg justify-center'>
+                                        <div className={`flex mt-3  font-bold text-lg justify-center ${member.trainer==="No Trainer" ? 'text-red-500':'text-yellow-100'}`}>
                                             <p className='font-serif'>Trainer : {member.trainer}</p>
                                         </div>
                                         <div className='flex mt-3 text-yellow-100 font-bold text-lg justify-center'>

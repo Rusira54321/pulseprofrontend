@@ -12,9 +12,12 @@ const Addmember = () => {
     const [data,setdata] = useState([])
     const [profile,setprofile] = useState(null)
     useEffect(()=>{
+        const key = localStorage.getItem("gymkey")
         const getdetails = async() =>{
         const URL = "http://localhost:5000/trainer/gettrainer"
-            await axios.get(URL).then((res)=>{
+            await axios.post(URL,{
+                "key":key
+            }).then((res)=>{
                 setdata(res.data.trainers)
             }).catch((error)=>{
                 console.log(error)
@@ -99,7 +102,7 @@ const Addmember = () => {
                              <select required  onChange={(e)=>{setTrainer(e.target.value)}}className='w-1/2 mr-15 mt-4 border border-gray-400 rounded px-3 py-2 text-white'>
                                 <option value="" className='bg-gray-800'>Select trainer</option>
                                 {data.map((data)=>(
-                                    <option key={data._id} value={data.name} className='bg-gray-800'>
+                                    <option key={data._id} value={data.username} className='bg-gray-800'>
                                             {data.name}
                                     </option>
                                 ))}
