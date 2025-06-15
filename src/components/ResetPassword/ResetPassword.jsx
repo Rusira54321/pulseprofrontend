@@ -28,6 +28,7 @@ const ResetPassword = () => {
                                 });
                 navigate("/login")  
                 localStorage.removeItem("email")
+                localStorage.removeItem("preferedemail")
         }).catch((error)=>{
                 toast.warn(error.response.data.message, {
                         position: "top-right",

@@ -63,7 +63,7 @@ const Login = () => {
                     </div>
                     <div className='flex justify-end'>
                             <div>
-                                <p className='font-mono mr-10 mt-2 text-white'><Link to="/email">Forget password</Link></p>
+                                <p className='font-mono mr-10 mt-2 text-white'><Link to="/username">Forget password</Link></p>
                             </div>
                     </div>
                     <div className='flex justify-center mt-10'>

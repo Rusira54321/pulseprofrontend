@@ -10,6 +10,22 @@ const Email = () => {
     const [email,setEmail] = useState('')
     const handleSubmit = async(e) =>{
         e.preventDefault()
+        const emails = localStorage.getItem("preferedemail")
+        if(emails!=email)
+        {
+             toast.warn("the email is not correct", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                        });
+        }
+        else{
         await axios.post(URL,{
             email:email
         }).then(()=>{
@@ -39,6 +55,7 @@ const Email = () => {
                         transition: Bounce,
                         });
         })
+    }
     }
   return (
     <div className='flex justify-center items-center h-screen bg-black'>

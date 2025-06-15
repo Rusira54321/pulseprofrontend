@@ -4,6 +4,7 @@ import Gymdashboard from './components/gymdashboard/gymdashboard'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
+import Username from "./components/Username/Username"
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Otp from './components/Otp/Otp'
@@ -33,6 +34,7 @@ function App() {
           <Route path="otp" element={<Otp />} />
           <Route path='/trainer/login' element={<Trainerlogin/>}/>
           <Route path="reset" element={<ResetPassword />} />
+          <Route path='username' element={<Username/>}/>
         </Route>
 
         {/* Standalone route (not using Homenavbar) */}

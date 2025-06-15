@@ -3,6 +3,8 @@ import axios from "axios"
 import {toast,Bounce} from "react-toastify"
 import member from "../Addmember/member.jpg"
 const Addmember = () => {
+    const getUrl = "http://localhost:5000/trainer/gettrainername"
+ 
     const [name,setName] = useState("")
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
@@ -11,6 +13,7 @@ const Addmember = () => {
     const [trainer,setTrainer] = useState("")
     const [data,setdata] = useState([])
     const [profile,setprofile] = useState(null)
+      
     useEffect(()=>{
         const key = localStorage.getItem("gymkey")
         const getdetails = async() =>{
@@ -25,45 +28,45 @@ const Addmember = () => {
         }
         getdetails()
     },[])
-    const handleSubmit = async(e) =>{
-            e.preventDefault()
-            const key = localStorage.getItem("gymkey")
-            const formdata = new FormData()
-            formdata.append("name",name)
-            formdata.append("username",username)
-            formdata.append("password",password)
-            formdata.append("height",height)
-            formdata.append("weight",weight)
-            formdata.append("trainer",trainer)
-            formdata.append("profile",profile)
-            formdata.append("key",key)
-            const urls = "http://localhost:5000/multer/addmember"
-            await axios.post(urls,formdata).then(()=>{
-        toast.success('member added successfully', {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: false,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                                transition: Bounce,
-                                });
-    }).catch((error)=>{
-        toast.warn(error.response.data.message, {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: false,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                                transition: Bounce,
-                                });
-    })
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    const key = localStorage.getItem("gymkey");
+
+    try {
+        // Get trainer's name based on username
+        const res = await axios.post(getUrl, { username: trainer });
+        const trainerNameFromServer = res.data.name;
+
+        const formdata = new FormData();
+        formdata.append("trainername", trainerNameFromServer); // ✅ Correct usage here
+        formdata.append("name", name);
+        formdata.append("username", username);
+        formdata.append("password", password);
+        formdata.append("height", height);
+        formdata.append("weight", weight);
+        formdata.append("trainer", trainer);
+        formdata.append("profile", profile);
+        formdata.append("key", key);
+
+        const urls = "http://localhost:5000/multer/addmember";
+
+        await axios.post(urls, formdata);
+        toast.success("Member added successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            theme: "light",
+            transition: Bounce,
+        });
+
+    } catch (error) {
+        toast.warn(error.response?.data?.message || "Error adding member", {
+            position: "top-right",
+            autoClose: 5000,
+            theme: "light",
+            transition: Bounce,
+        });
     }
+};
   return (
     <div className='flex w-full justify-center items-center h-screen bg-black'>
         <div className='w-3/4 bg-gray-200 h-3/4 flex rounded-2xl'>
