@@ -6,6 +6,7 @@ import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
 import Email from './components/Email/Email'
 import Otp from './components/Otp/Otp'
+import Members from './components/displaymembers/Members'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
@@ -39,6 +40,7 @@ function App() {
             <Route index element={Gymdashboard}/>
             <Route path="trainer" element={<Addtrainer/>}/>
             <Route path='addmember' element={<Addmember/>}/>
+            <Route path='displayMember' element={<Members/>}/>
         </Route>
         
       </Routes>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {  UserPlus, Dumbbell, LayoutDashboard } from 'lucide-react';
+import {  UserPlus, Dumbbell, LayoutDashboard ,Flame} from 'lucide-react';
 import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
@@ -31,6 +31,13 @@ const Sidebar = () => {
         >
           <Dumbbell size={20} />
           <span>Add Trainer</span>
+        </Link>
+         <Link
+          to="/admin/dashbaord/displayMember"
+          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+        >
+          <Flame size={20} />
+          <span>display Members</span>
         </Link>
       </nav>
     </div>
