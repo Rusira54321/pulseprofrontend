@@ -64,7 +64,7 @@ const Email = () => {
                 <img src={image12} className='w-full h-full object-cover  rounded-l-2xl'/>
             </div>
             <div className='w-1/2 h-full bg-gray-900 rounded-r-2xl'>
-                    <form className='flex flex-col'>
+                    <form onSubmit={handleSubmit} className='flex flex-col'>
                         <div className='flex justify-center mt-40 text-2xl text-white font-mono'>
                             <h1>Enter your email</h1>
                         </div>
@@ -73,7 +73,7 @@ const Email = () => {
                         </div>
                         <div  className='flex justify-center'>
                             <div className=' mt-5 h-6 w-20 bg-gray-300 flex justify-center items-center'>
-                                <button type="submit" className='font-mono cursor-pointer' onClick={handleSubmit}>Submit</button>
+                                <button type="submit" className='font-mono cursor-pointer' >Submit</button>
                             </div>
                         </div>
                     </form>

@@ -74,7 +74,7 @@ const Addmember = () => {
                 <img src={member} className='w-full h-full object-cover  rounded-l-2xl'/>
             </div>
             <div className='w-3/4 h-full bg-gray-900 rounded-r-2xl'>
-                    <form className='flex flex-col'>
+                    <form onSubmit={handleSubmit} className='flex flex-col'>
                         <div className='flex justify-center'>
                             <div>
                                 <p className='font-mono text-3xl text-white mt-2'>Add Member</p>
@@ -124,7 +124,7 @@ const Addmember = () => {
                         </div>
                         <div className='flex'>
                             <div className=' mt-7 ml-60 h-6 w-20 bg-gray-300 flex justify-center items-center'>
-                                <button type="submit" className='font-mono cursor-pointer' onClick={handleSubmit}>Add</button>
+                                <button type="submit" className='font-mono cursor-pointer' >Add</button>
                             </div>
                         </div>
                 </form>

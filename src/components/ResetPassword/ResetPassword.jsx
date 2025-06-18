@@ -50,7 +50,7 @@ const ResetPassword = () => {
                         <img src={image12} className='w-full h-full object-cover object-left rounded-l-2xl'/>
                     </div>
                     <div className='w-1/2 h-full bg-gray-900 rounded-r-2xl'>
-                            <form className='flex flex-col'>
+                            <form onSubmit={handleSubmit} className='flex flex-col'>
                                 <div className='flex justify-center mt-40 text-2xl text-white font-mono'>
                                     <h1>Enter the new password</h1>
                                 </div>
@@ -59,7 +59,7 @@ const ResetPassword = () => {
                                 </div>
                                 <div  className='flex justify-center'>
                                     <div className=' mt-5 h-6 w-20 bg-gray-300 flex justify-center items-center'>
-                                        <button type="submit" onClick={handleSubmit} className='font-mono cursor-pointer'>Submit</button>
+                                        <button type="submit"  className='font-mono cursor-pointer'>Submit</button>
                                     </div>
                                 </div>
                             </form>

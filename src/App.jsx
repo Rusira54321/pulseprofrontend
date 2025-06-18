@@ -8,6 +8,9 @@ import Username from "./components/Username/Username"
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Otp from './components/Otp/Otp'
+import Addsuppliment from "./components/Addsupplemets/Addsupliment"
+import DisplaySupplement from './components/DisplaySupplement/DisplaySupplement'
+import Supplements from "./components/Supplements/Supplements"
 import Members from './components/displaymembers/Members'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
@@ -45,8 +48,10 @@ function App() {
             <Route path="trainer" element={<Addtrainer/>}/>
             <Route path='addmember' element={<Addmember/>}/>
             <Route path='displayMember' element={<Members/>}/>
+            <Route path='supplement' element={<Supplements/>}/>
         </Route>
-        
+        <Route path='/addsuplliment' element={<Addsuppliment/>}/>
+        <Route path='/displaysuplliment' element={<DisplaySupplement/>}/>
       </Routes>
     </div>
   )

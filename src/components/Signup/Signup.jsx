@@ -50,7 +50,7 @@ function Signup() {
                 <img src={loginimage} className='w-full h-full object-cover object-top rounded-l-2xl'/>
             </div>
             <div className='w-1/2 h-full bg-gray-900 rounded-r-2xl'>
-                    <form className='flex flex-col'>
+                    <form onSubmit={handleSubmit} className='flex flex-col'>
                     <div className='flex justify-center'>
                         <div>
                             <p className='font-mono text-3xl text-white mt-10'>Sign up</p>
@@ -90,7 +90,7 @@ function Signup() {
                     </div>
                     <div className='flex justify-center mt-10'>
                         <div className='h-6 w-20 bg-gray-300 flex justify-center items-center'>
-                                <button type="submit" className='font-mono cursor-pointer' onClick={handleSubmit}>Sign Up</button>
+                                <button type="submit" className='font-mono cursor-pointer' >Sign Up</button>
                         </div>
                     </div>
                     <div className='font-mono flex justify-center mt-2 text-white'>
