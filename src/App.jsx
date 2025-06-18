@@ -7,6 +7,7 @@ import {Route,Routes} from "react-router-dom"
 import Username from "./components/Username/Username"
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
+import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
 import Addsuppliment from "./components/Addsupplemets/Addsupliment"
 import DisplaySupplement from './components/DisplaySupplement/DisplaySupplement'
@@ -52,6 +53,7 @@ function App() {
         </Route>
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>
         <Route path='/displaysuplliment' element={<DisplaySupplement/>}/>
+        <Route path='/update-supplement/:id' element={<Updatesuppliment/>}/>
       </Routes>
     </div>
   )

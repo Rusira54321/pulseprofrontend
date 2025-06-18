@@ -157,6 +157,7 @@ const Addsupliment = () => {
                 <option value="Protein">Protein</option>
                 <option value="Pre-workout">Pre-workout</option>
                 <option value="Post-workout">Post-workout</option>
+                <option value="Creatine">Creatine</option>
                 <option value="Multivitamin">Multivitamin</option>
               </select>
             </motion.div>

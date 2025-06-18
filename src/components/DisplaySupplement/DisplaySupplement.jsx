@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { toast, Bounce } from "react-toastify";
 import { motion } from "framer-motion";
 
 const DisplaySupplement = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [nutritions, setNutritions] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const URL = "http://localhost:5000/suppliment/getsuppliment";
 
   useEffect(() => {
@@ -20,12 +22,34 @@ const DisplaySupplement = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this supplement?")) {
-      try {
-        await axios.delete(`http://localhost:5000/suppliment/delete/${id}`);
-        setNutritions(nutritions.filter((item) => item._id !== id));
-      } catch (err) {
-        console.error("Delete failed", err);
-      }
+      await axios.delete(`http://localhost:5000/suppliment/deleteSuppliment/${id}`)
+        .then((res) => {
+          setNutritions(nutritions.filter((item) => item._id !== id));
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+        });
     }
   };
 
@@ -38,7 +62,8 @@ const DisplaySupplement = () => {
   };
 
   const filteredSupplements = nutritions.filter((item) =>
-    item.supplimentName.toLowerCase().includes(searchTerm.toLowerCase())
+    item.supplimentName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (selectedCategories.length === 0 || selectedCategories.includes(item.category))
   );
 
   return (
@@ -54,7 +79,7 @@ const DisplaySupplement = () => {
 
       {/* Search Bar */}
       <motion.div
-        className="max-w-4xl mx-auto mb-8"
+        className="max-w-4xl mx-auto mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
@@ -67,6 +92,57 @@ const DisplaySupplement = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </motion.div>
+
+      {/* Category Filters */}
+      <motion.div
+        className="flex flex-wrap gap-4 justify-center mb-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        {["Protein", "Pre-workout", "Post-workout", "Creatine", "Multivitamin"].map((category, i) => (
+          <motion.label
+            key={category}
+            className="flex items-center gap-2 text-sm bg-gray-800 px-3 py-1 rounded-md cursor-pointer hover:bg-yellow-600 transition"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 + i * 0.1 }}
+          >
+            <input
+              type="checkbox"
+              value={category}
+              checked={selectedCategories.includes(category)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSelectedCategories((prev) =>
+                  prev.includes(value)
+                    ? prev.filter((cat) => cat !== value)
+                    : [...prev, value]
+                );
+              }}
+              className="form-checkbox accent-yellow-400"
+            />
+            {category}
+          </motion.label>
+        ))}
+      </motion.div>
+
+      {/* Clear Filters Button */}
+      {selectedCategories.length > 0 && (
+        <motion.div
+          className="text-center mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <button
+            onClick={() => setSelectedCategories([])}
+            className="text-yellow-300 text-sm hover:underline transition"
+          >
+            Clear Filters
+          </button>
+        </motion.div>
+      )}
 
       {/* Supplement Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -84,7 +160,14 @@ const DisplaySupplement = () => {
               alt={supplement.supplimentName}
               className="w-full h-40 object-cover rounded-md mb-4"
             />
-            <h3 className="text-xl font-semibold">{supplement.supplimentName}</h3>
+
+            <div className="flex justify-between items-center mb-1">
+              <h3 className="text-xl font-semibold">{supplement.supplimentName}</h3>
+              <span className={`text-sm ${supplement.Quantity <= 0 ? 'text-red-500 font-semibold' : 'text-gray-400'}`}>
+                {supplement.Quantity <= 0 ? 'Out of Stock' : `Qty: ${supplement.Quantity}`}
+              </span>
+            </div>
+
             <p className="text-gray-400">{supplement.brandName}</p>
             <p className="text-gray-400">{supplement.category}</p>
             <p className="text-yellow-400 mt-2 font-bold">Rs. {supplement.Price}</p>
@@ -119,7 +202,14 @@ const DisplaySupplement = () => {
           </motion.div>
         ))}
         {filteredSupplements.length === 0 && (
-          <p className="col-span-full text-center text-gray-400">No supplements found</p>
+          <motion.p
+            className="col-span-full text-center text-gray-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            No supplements found
+          </motion.p>
         )}
       </div>
     </div>

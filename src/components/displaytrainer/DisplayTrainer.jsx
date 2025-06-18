@@ -102,6 +102,9 @@ const DisplayTrainer = () => {
               </motion.div>
             ))
           }
+           {filteredtrainers.length === 0 && (
+          <p className="col-span-full text-center text-gray-400">No Trainers found</p>
+        )}
         </div>
       </div>
     </div>

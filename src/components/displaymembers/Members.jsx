@@ -89,6 +89,9 @@ const Members = () => {
                                 </div>
                             ))
                         }
+                        {filteredmembers.length === 0 && (
+          <p className="col-span-full text-center text-gray-400">No Members found</p>
+        )}
             </div>
         </div>
     </div>
