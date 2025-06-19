@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import {toast,Bounce} from "react-toastify"
+import { useNavigate } from 'react-router-dom'
 
 const Members = () => {
+    const navigate = useNavigate()
     const URL = "http://localhost:5000/get/getmembers"
     const [members,setmembers] = useState([])
     const [searchTerm,setsearchTerm] = useState("")
     const delURL = "http://localhost:5000/get/deletemember"
+    const handleEdit = (id) =>{
+        navigate(`/update/members/${id}`)
+    }
     const memberdelete = async(id) =>{
         await axios.post(delURL,{
             "id":id
@@ -83,7 +88,7 @@ const Members = () => {
                                                 <button className="px-4 py-1.5 cursor-pointer bg-rose-500 text-white rounded-md shadow hover:bg-rose-600 hover:scale-105 transition-all duration-300 ease-in-out" onClick={()=>{
                                                     memberdelete(member._id)
                                                 }}>Delete</button>
-                                                <button className="px-4 py-1.5 cursor-pointer bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 hover:scale-105 transition-all duration-300 ease-in-out">Edit</button>
+                                                <button onClick={()=>{handleEdit(member._id)}} className="px-4 py-1.5 cursor-pointer bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 hover:scale-105 transition-all duration-300 ease-in-out">Edit</button>
                                                 <button className="px-4 py-1.5 cursor-pointer bg-emerald-500 text-white rounded-md shadow hover:bg-emerald-600 hover:scale-105 transition-all duration-300 ease-in-out">Pay</button>
                                         </div>
                                 </div>

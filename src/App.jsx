@@ -4,6 +4,8 @@ import Gymdashboard from './components/gymdashboard/gymdashboard'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
+import updateMembers from "./components/displaymembers/UpdateMembers"
+import UpdateTrainer from "./components/displaytrainer/UpdateTrainer"
 import Username from "./components/Username/Username"
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
@@ -22,6 +24,7 @@ import Trainerlogin from './components/Trainerlogin/Trainerlogin'
 import Memberlogin from './components/memberlogin/Memberlogin'
 import Trainerdashboard from './components/trainerdashboard/Trainerdashboard'
 import Addmember from './components/Addmember/Addmember'
+import UpdateMembers from './components/displaymembers/UpdateMembers'
 function App() {
 
   return (
@@ -54,6 +57,8 @@ function App() {
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>
         <Route path='/displaysuplliment' element={<DisplaySupplement/>}/>
         <Route path='/update-supplement/:id' element={<Updatesuppliment/>}/>
+        <Route path='/update/trainer/:id' element={<UpdateTrainer/>}/>
+        <Route path='/update/members/:id' element={<UpdateMembers/>}/>
       </Routes>
     </div>
   )

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { toast, Bounce } from "react-toastify"
 import { motion } from "framer-motion"
+import { useNavigate } from 'react-router-dom'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50, rotate: 5, scale: 0.9 },
@@ -10,10 +11,13 @@ const cardVariants = {
 }
 
 const DisplayTrainer = () => {
+  const navigate = useNavigate()
   const [trainers, settrainers] = useState([])
   const [searchTerm, setsearchTerm] = useState("")
   const url = "http://localhost:5000/trainer/deletetrainer"
-
+  const handleEdit = async(id) =>{
+      navigate(`/update/trainer/${id}`)
+  }
   const handledelete = async (id, username) => {
     await axios.post(url, {
       "id": id,
@@ -97,7 +101,7 @@ const DisplayTrainer = () => {
                   <button onClick={() => {
                     handledelete(trainer._id, trainer.username)
                   }} className="px-5 py-2 cursor-pointer bg-rose-600 text-white rounded-md shadow hover:bg-rose-700 hover:scale-110 transition-all duration-300 ease-in-out">Delete</button>
-                  <button className="px-5 py-2 cursor-pointer bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 hover:scale-110 transition-all duration-300 ease-in-out">Edit</button>
+                  <button onClick={()=>{handleEdit(trainer._id)}} className="px-5 py-2 cursor-pointer bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 hover:scale-110 transition-all duration-300 ease-in-out">Edit</button>
                 </div>
               </motion.div>
             ))
