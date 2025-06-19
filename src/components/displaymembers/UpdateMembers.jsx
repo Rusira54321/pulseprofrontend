@@ -46,8 +46,40 @@ const UpdateMembers = () => {
 
     },[])
     
-    const handleSubmit = (e) =>{
+    const handleSubmit = async(e) =>{
         e.preventDefault()
+        const URL = "http://localhost:5000/get/updatemember"
+        await axios.post(URL,{
+            "id":id,
+            "password":password,
+            "heightCM":height,
+            "weightKG":weight,
+            "trainer":trainer
+        }).then((res)=>{
+            toast.success(res.data.message, {
+                                                        position: "top-right",
+                                                        autoClose: 5000,
+                                                        hideProgressBar: false,
+                                                        closeOnClick: false,
+                                                        pauseOnHover: true,
+                                                        draggable: true,
+                                                        progress: undefined,
+                                                        theme: "dark",
+                                                        transition: Bounce,
+                                                        });
+        }).catch((error)=>{
+             toast.error(error.response.data.message, {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: false,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "dark",
+                                    transition: Bounce,
+                                  });
+        })
     }
     const inputStyles = "w-1/2 mr-15 mt-4 px-4 py-2 rounded-xl border border-gray-400 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out";
 
@@ -105,8 +137,8 @@ const UpdateMembers = () => {
                 </div>
     
                 {[
-                  { label: "Name", value: name,  setter: setname, type: "text"},
-                  { label: "User Name", value: username, setter:setUsername , type: "text" },
+                  { label: "Name", value: name,  setter: setname, type: "text",disabled:true},
+                  { label: "User Name", value: username, setter:setUsername , type: "text",disabled:true},
                   { label: "Password", value: password, setter:setPassword , type: "password" },
                   { label: "Height in CM", value: height, setter:setheight , type: "number" },
                   { label: "Weight in KG", value: weight, setter:setweight, type: "number" },
