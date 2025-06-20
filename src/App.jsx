@@ -19,6 +19,8 @@ import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
 import Dietplan from "./components/AdminAI/Dietplan"
 import Schedule from "./components/AdminAI/Schedule"
+import MarkAttendance from './components/Markattendance/MarkAttendance'
+import SeeAttendance from './components/SeeAttendance/SeeAttendance'
 import AI from "./components/AdminAI/Aifeatures"
 import Homenavbar from './components/Homenavbar/Homenavbar'
 import Addtrainer from './components/addtrainer/Addtrainer'
@@ -56,6 +58,8 @@ function App() {
             <Route path='displayMember' element={<Members/>}/>
             <Route path='supplement' element={<Supplements/>}/>
             <Route path='AI/Admin' element={<AI/>}/>
+            <Route path='seeAtendance' element={<SeeAttendance/>}/>
+            <Route path='markAttendance' element={<MarkAttendance/>}/>
         </Route>
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>
         <Route path='/displaysuplliment' element={<DisplaySupplement/>}/>

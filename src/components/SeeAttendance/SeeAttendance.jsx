@@ -1,0 +1,11 @@
+import React from 'react'
+
+const SeeAttendance = () => {
+  return (
+    <div className='flex w-full min-h-screen bg-gray-800'>
+      
+    </div>
+  )
+}
+
+export default SeeAttendance
