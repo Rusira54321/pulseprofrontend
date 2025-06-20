@@ -4,7 +4,6 @@ import Gymdashboard from './components/gymdashboard/gymdashboard'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
-import updateMembers from "./components/displaymembers/UpdateMembers"
 import UpdateTrainer from "./components/displaytrainer/UpdateTrainer"
 import Username from "./components/Username/Username"
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
@@ -18,6 +17,9 @@ import Members from './components/displaymembers/Members'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
+import Dietplan from "./components/AdminAI/Dietplan"
+import Schedule from "./components/AdminAI/Schedule"
+import AI from "./components/AdminAI/Aifeatures"
 import Homenavbar from './components/Homenavbar/Homenavbar'
 import Addtrainer from './components/addtrainer/Addtrainer'
 import Trainerlogin from './components/Trainerlogin/Trainerlogin'
@@ -53,12 +55,16 @@ function App() {
             <Route path='addmember' element={<Addmember/>}/>
             <Route path='displayMember' element={<Members/>}/>
             <Route path='supplement' element={<Supplements/>}/>
+            <Route path='AI/Admin' element={<AI/>}/>
         </Route>
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>
         <Route path='/displaysuplliment' element={<DisplaySupplement/>}/>
         <Route path='/update-supplement/:id' element={<Updatesuppliment/>}/>
         <Route path='/update/trainer/:id' element={<UpdateTrainer/>}/>
         <Route path='/update/members/:id' element={<UpdateMembers/>}/>
+        
+        <Route path='/AI/Admin/dietplan' element={<Dietplan/>}/>
+        <Route path='/AI/Admin/schedule' element={<Schedule/>}/>
       </Routes>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import {  UserPlus, Dumbbell, LayoutDashboard ,Flame,ShoppingBasket} from 'lucide-react';
+import {  UserPlus, Dumbbell, LayoutDashboard ,Flame,ShoppingBasket,EarthLock} from 'lucide-react';
 import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
@@ -53,6 +53,14 @@ const Sidebar = () => {
           <ShoppingBasket size={20} />
           <span>Supplements</span>
         </Link>
+        <Link
+          to="/admin/dashbaord/AI/Admin"
+          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+        >
+          <EarthLock size={20} />
+          <span>Generate with AI</span>
+        </Link>
+      
       </nav>
     </div>
   )
