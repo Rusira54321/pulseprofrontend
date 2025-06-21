@@ -3,31 +3,41 @@ import axios from "axios"
 import { motion } from 'framer-motion';
 
 const MarkAttendance = () => {
-  const URL = "http://localhost:5000/get/getmembers"
+  const URL = "http://localhost:5000/get/getmemberss"
   const key = localStorage.getItem("gymkey")
   const [users, setusers] = useState([])
-  const [attendanceStatus, setAttendanceStatus] = useState({}) // 👈 track each user's selected button
 
   useEffect(() => {
     const getusers = async () => {
-      await axios.post(URL, {
-        key: key
-      }).then((res) => {
-        console.log(res.data.member)
+      try {
+        const res = await axios.post(URL, { key })
         setusers(res.data.member)
-      })
+      } catch (err) {
+        console.error("Error fetching users:", err)
+      }
     }
     getusers()
   }, [])
-  useEffect(() => {
-  console.log(attendanceStatus);
-}, [attendanceStatus]);
-  const handle = (userId, status) => {
-    setAttendanceStatus(prev => ({
-      ...prev,
-      [userId]: status
-    }))
-    
+
+  const URLS = "http://localhost:5000/Attendance/addAttendance"
+
+  const handle = async (userId, status, name, username) => {
+    try {
+      await axios.post(URLS, {
+        id: userId,
+        name,
+        username,
+        attendance: status
+      })
+      // Update local state immediately
+      setusers(prev =>
+        prev.map(user =>
+          user._id === userId ? { ...user, attendance: status } : user
+        )
+      )
+    } catch (err) {
+      console.error("Error marking attendance:", err)
+    }
   }
 
   const tableVariants = {
@@ -60,9 +70,9 @@ const MarkAttendance = () => {
         <motion.table className='border-2 border-white w-3/4' initial="hidden" animate="visible" variants={tableVariants}>
           <thead>
             <tr>
-              <th className='border-1 border-white text-white w-4/16'>id</th>
+              <th className='border-1 border-white text-white w-4/16'>ID</th>
               <th className='border-1 border-white text-white w-3/16'>Member Name</th>
-              <th className='border-1 border-white text-white w-3/16'>User name</th>
+              <th className='border-1 border-white text-white w-3/16'>Username</th>
               <th className='border-1 border-white text-white w-6/16'>Action</th>
             </tr>
           </thead>
@@ -80,37 +90,42 @@ const MarkAttendance = () => {
                 </td>
                 <td className='border-1 border-white text-white w-6/16'>
                   <div className='flex my-2 gap-x-6 justify-center'>
-                    {/* Conditionally render only selected or all buttons */}
-                    {attendanceStatus[user._id] === 'Present' &&
-                      <motion.button className='border-1 px-2 border-green-400 bg-green-700 text-white'>Present</motion.button>}
-                    {attendanceStatus[user._id] === 'Absent' &&
-                      <motion.button className='border-1 px-2 border-red-400 bg-red-700 text-white'>Absent</motion.button>}
-                    {attendanceStatus[user._id] === 'Sick' &&
-                      <motion.button className='border-1 px-2 border-gray-400 bg-gray-700 text-white'>Sick</motion.button>}
-                    {attendanceStatus[user._id] === 'Leave' &&
-                      <motion.button className='border-1 px-2 border-yellow-400 bg-yellow-700 text-white'>Leave</motion.button>}
+                    {/* Show only the selected attendance button */}
+                    {user.attendance === 'Present' && (
+                      <motion.button className='border-1 px-2 border-green-400 bg-green-700 text-white cursor-default'>Present</motion.button>
+                    )}
+                    {user.attendance === 'Absent' && (
+                      <motion.button className='border-1 px-2 border-red-400 bg-red-700 text-white cursor-default'>Absent</motion.button>
+                    )}
+                    {user.attendance === 'Sick' && (
+                      <motion.button className='border-1 px-2 border-gray-400 bg-gray-700 text-white cursor-default'>Sick</motion.button>
+                    )}
+                    {user.attendance === 'Leave' && (
+                      <motion.button className='border-1 px-2 border-yellow-400 bg-yellow-700 text-white cursor-default'>Leave</motion.button>
+                    )}
 
-                    {!attendanceStatus[user._id] && (
+                    {/* Show all options if no attendance is marked yet */}
+                    {!user.attendance && (
                       <>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => handle(user._id, 'Present')}
+                          onClick={() => handle(user._id, 'Present', user.name, user.username)}
                           className='border-1 px-2 cursor-pointer border-green-400 bg-green-700 text-white'>Present</motion.button>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => handle(user._id, 'Absent')}
+                          onClick={() => handle(user._id, 'Absent', user.name, user.username)}
                           className='border-1 px-2 cursor-pointer border-red-400 bg-red-700 text-white'>Absent</motion.button>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => handle(user._id, 'Sick')}
+                          onClick={() => handle(user._id, 'Sick', user.name, user.username)}
                           className='border-1 px-2 cursor-pointer border-gray-400 bg-gray-700 text-white'>Sick</motion.button>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => handle(user._id, 'Leave')}
+                          onClick={() => handle(user._id, 'Leave', user.name, user.username)}
                           className='border-1 px-2 cursor-pointer border-yellow-400 bg-yellow-700 text-white'>Leave</motion.button>
                       </>
                     )}
