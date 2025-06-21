@@ -72,7 +72,7 @@ const Sidebar = () => {
           className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
         >
           <ContactRound size={20} />
-          <span>See Attendance</span>
+          <span>Attendance report</span>
         </Link>
       </nav>
     </div>

@@ -57,7 +57,11 @@ const MarkAttendance = () => {
       transition: { delay: i * 0.1 }
     })
   }
-
+  const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months start from 0
+    const year = today.getFullYear();
+    const customFormat = `${day}-${month}-${year}`;
   return (
     <div className='flex flex-col w-full min-h-screen bg-gray-800'>
       <div className='flex mt-8 justify-center'>
@@ -65,6 +69,11 @@ const MarkAttendance = () => {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}>Mark Attendance</motion.h1>
+      </div>
+      <div className='flex mt-8 justify-center'>
+            <motion.p  initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }} className='text-white text-2xl'>{customFormat}</motion.p>
       </div>
       <div className='flex mt-5 justify-center'>
         <motion.table className='border-2 border-white w-3/4' initial="hidden" animate="visible" variants={tableVariants}>
