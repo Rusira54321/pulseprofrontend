@@ -6,6 +6,7 @@ import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
 import UpdateTrainer from "./components/displaytrainer/UpdateTrainer"
 import Username from "./components/Username/Username"
+import Trainerlayout from "./components/Adminlayout/TrainerDashLayout"
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
@@ -17,6 +18,8 @@ import Members from './components/displaymembers/Members'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Home from './components/Home/Home'
+import Memberss from "./components/Trainer/Members"
+import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
 import Schedule from "./components/AdminAI/Schedule"
 import MarkAttendance from './components/Markattendance/MarkAttendance'
@@ -49,7 +52,11 @@ function App() {
         </Route>
 
         {/* Standalone route (not using Homenavbar) */}
-        <Route path='/trainer/dashboard' element={<Trainerdashboard/>}/>
+
+        <Route path='/trainer/dashboard' element={<Trainerlayout/>}>
+          <Route index element={<Trainerdashboard/>}/>
+          <Route path='displaymembers' element={<Memberss/>}/>
+        </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>
             <Route index element={<Gymdashboard/>}/>
@@ -61,6 +68,7 @@ function App() {
             <Route path='seeAtendance' element={<SeeAttendance/>}/>
             <Route path='markAttendance' element={<MarkAttendance/>}/>
         </Route>
+        <Route path='/trainer/memberUpdate/:id/:gym' element={<UpdateMember/>}/>
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>
         <Route path='/displaysuplliment' element={<DisplaySupplement/>}/>
         <Route path='/update-supplement/:id' element={<Updatesuppliment/>}/>

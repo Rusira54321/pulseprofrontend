@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import {toast,Bounce} from "react-toastify"
@@ -14,6 +14,7 @@ const Trainerlogin = () => {
             username,password
         }).then((res)=>{
                 localStorage.setItem("trainertoken",res.data.token)
+                localStorage.setItem("trainerusername",username)
                 navigate("/trainer/dashboard")
         }).catch((error)=>{
                  toast.warn(error.response.data.message, {
