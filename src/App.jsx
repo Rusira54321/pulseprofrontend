@@ -25,6 +25,7 @@ import Schedule from "./components/AdminAI/Schedule"
 import MarkAttendance from './components/Markattendance/MarkAttendance'
 import SeeAttendance from './components/SeeAttendance/SeeAttendance'
 import AI from "./components/AdminAI/Aifeatures"
+import WorkoutPlan from './components/Trainer/WorkoutPlan'
 import Homenavbar from './components/Homenavbar/Homenavbar'
 import Addtrainer from './components/addtrainer/Addtrainer'
 import Trainerlogin from './components/Trainerlogin/Trainerlogin'
@@ -56,6 +57,7 @@ function App() {
         <Route path='/trainer/dashboard' element={<Trainerlayout/>}>
           <Route index element={<Trainerdashboard/>}/>
           <Route path='displaymembers' element={<Memberss/>}/>
+          <Route path='workoutplan' element={<WorkoutPlan/>}/>
         </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>

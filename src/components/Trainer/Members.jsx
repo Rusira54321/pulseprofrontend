@@ -27,17 +27,17 @@ const Members = () => {
   }, [])
 
   return (
-    <div className='flex flex-col min-h-screen w-full bg-gray-900'>
+    <div className='flex flex-col min-h-screen w-full bg-gray-800'>
       <div className='flex w-full mt-5 mb-10 justify-center'>
         <p className='text-4xl font-extrabold text-white tracking-wide'>Members</p>
       </div>
       <div className='flex h-full w-full'>
-        <div className='grid ml-16 w-full mb-10 h-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12'>
+        <div className='grid  w-full mb-10 h-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12'>
           {
             members.length !== 0 ? members.map((member, index) => (
               <motion.div
                 key={member._id}
-                className='bg-gradient-to-br from-yellow-200 to-yellow-100 rounded-2xl shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl'
+                className='bg-gradient-to-br ml-16 from-yellow-200 to-yellow-100 rounded-2xl shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl'
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -67,7 +67,7 @@ const Members = () => {
               </motion.div>
             )) : (
               <motion.div
-                className='text-white text-lg font-semibold mt-5'
+                className='col-span-full text-center  text-gray-400'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
