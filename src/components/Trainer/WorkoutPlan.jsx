@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import { toast, Bounce } from "react-toastify"
+
 const WorkoutPlan = () => {
   const URL = "http://localhost:5000/get/getmemberbyTrainer"
+  const workoutURL = "http://localhost:5000/workout/addWorkoutPlan"
   const [members,setmembers] = useState([])
   useEffect(()=>{
     const username = localStorage.getItem("trainerusername")
@@ -49,7 +52,33 @@ const WorkoutPlan = () => {
   }
   const handleSubmit = (e) =>{
       e.preventDefault()
-      console.log(form)
+      const trainerusername = localStorage.getItem("trainerusername")
+      const {memberUsername,goal,planname,workouts} = form
+      const addworkout = async() =>{
+        await axios.post(workoutURL,{
+          "goal":goal,
+          "memberUsername":memberUsername,
+          "planname":planname,
+          "workouts":workouts,
+          "trainerusername":trainerusername
+        }).then((res)=>{
+           toast.success(res.data.message, {
+                  position: "top-right",
+                  autoClose: 5000,
+                  theme: "dark",
+                  transition: Bounce,
+                });
+        }).catch((error)=>{
+          toast.error(error.response.data.message, {
+                  position: "top-right",
+                  autoClose: 5000,
+                  theme: "dark",
+                  transition: Bounce,
+                });
+        })
+      }
+      addworkout()
+      
   }
   const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
   return (
