@@ -17,6 +17,7 @@ import Supplements from "./components/Supplements/Supplements"
 import Members from './components/displaymembers/Members'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
+import Dietplans from "./components/Trainer/Dietplan"
 import Home from './components/Home/Home'
 import Memberss from "./components/Trainer/Members"
 import UpdateMember from './components/Trainer/UpdateMember'
@@ -58,6 +59,7 @@ function App() {
           <Route index element={<Trainerdashboard/>}/>
           <Route path='displaymembers' element={<Memberss/>}/>
           <Route path='workoutplan' element={<WorkoutPlan/>}/>
+          <Route path='dietplan' element={<Dietplans/>}/>
         </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>

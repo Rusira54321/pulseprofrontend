@@ -33,6 +33,13 @@ const TrainerSidebar = () => {
            <Dumbbell size={20} />
            <span>create Workout plan</span>
          </Link>
+         <Link
+           to="/trainer/dashboard/dietplan"
+           className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+         >
+           <Dumbbell size={20} />
+           <span>create Diet plan</span>
+         </Link>
         </nav>
      </div>
   )
