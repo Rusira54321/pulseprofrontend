@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard,Flame,Dumbbell} from 'lucide-react';
+import { LayoutDashboard,Flame,Dumbbell,Activity} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const TrainerSidebar = () => {
@@ -39,6 +39,20 @@ const TrainerSidebar = () => {
          >
            <Dumbbell size={20} />
            <span>create Diet plan</span>
+         </Link>
+         <Link
+           to="/trainer/dashboard/displayworkoutplan"
+           className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+         >
+           <Activity size={20} />
+           <span>See workoutplans</span>
+         </Link>
+         <Link
+           to="/trainer/dashboard/displayDietplan"
+           className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+         >
+           <Activity size={20} />
+           <span>See Diet plans</span>
          </Link>
         </nav>
      </div>

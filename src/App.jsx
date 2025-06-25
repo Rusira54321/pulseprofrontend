@@ -11,7 +11,9 @@ import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
+import DisplayDietplan from './components/Trainer/DisplayDietplan'
 import Addsuppliment from "./components/Addsupplemets/Addsupliment"
+import DisplayWorkoutplan from './components/Trainer/DisplayWorkoutplan'
 import DisplaySupplement from './components/DisplaySupplement/DisplaySupplement'
 import Supplements from "./components/Supplements/Supplements"
 import Members from './components/displaymembers/Members'
@@ -22,6 +24,7 @@ import Home from './components/Home/Home'
 import Memberss from "./components/Trainer/Members"
 import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
+import UpdateWorkout from './components/Trainer/UpdateWorkout'
 import Schedule from "./components/AdminAI/Schedule"
 import MarkAttendance from './components/Markattendance/MarkAttendance'
 import SeeAttendance from './components/SeeAttendance/SeeAttendance'
@@ -60,6 +63,8 @@ function App() {
           <Route path='displaymembers' element={<Memberss/>}/>
           <Route path='workoutplan' element={<WorkoutPlan/>}/>
           <Route path='dietplan' element={<Dietplans/>}/>
+          <Route path='displayworkoutplan' element={<DisplayWorkoutplan/>}/>
+          <Route path='displayDietplan' element={<DisplayDietplan/>}/>
         </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>
@@ -78,7 +83,7 @@ function App() {
         <Route path='/update-supplement/:id' element={<Updatesuppliment/>}/>
         <Route path='/update/trainer/:id' element={<UpdateTrainer/>}/>
         <Route path='/update/members/:id' element={<UpdateMembers/>}/>
-        
+        <Route path='/update/workout/:id' element={<UpdateWorkout/>}/>
         <Route path='/AI/Admin/dietplan' element={<Dietplan/>}/>
         <Route path='/AI/Admin/schedule' element={<Schedule/>}/>
       </Routes>
