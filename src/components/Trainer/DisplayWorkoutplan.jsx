@@ -62,7 +62,16 @@ const DisplayWorkoutplan = () => {
                 <p><span className='font-semibold text-gray-300'>Member:</span> {plan.memberUsername}</p>
                 <p><span className='font-semibold text-gray-300'>Goal:</span> {plan.goal}</p>
                 <p><span className='font-semibold text-gray-300'>Duration:</span> {plan.duration} weeks</p>
-
+                <p><span className='font-semibold text-gray-300'>Created date:</span> {' '}
+  {new Date(plan.createdAt).getDate().toString().padStart(2, '0')}-
+  {(new Date(plan.createdAt).getMonth() + 1).toString().padStart(2, '0')}-
+  {new Date(plan.createdAt).getFullYear()}</p>
+                <p>
+  <span className='font-semibold text-gray-300'>Expires On:</span>{' '}
+  {new Date(plan.expiredAt).getDate().toString().padStart(2, '0')}-
+  {(new Date(plan.expiredAt).getMonth() + 1).toString().padStart(2, '0')}-
+  {new Date(plan.expiredAt).getFullYear()}
+</p>
                 <div className='mt-4 space-y-3'>
                   {plan.workouts.map((workout, i) => (
                     <div key={i} className='bg-gray-700 p-3 rounded-lg border border-gray-600'>
