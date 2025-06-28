@@ -179,6 +179,7 @@ const AddTraining = () => {
                 key={memberindex}
                 onChange={(e) => addmember(memberindex, e.target.value)}
                 required
+                value={classes.memberUsername[memberindex]}
                 className='mt-3 px-4 py-2 rounded-lg border border-amber-300 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-amber-400'
               >
                 <option className='bg-gray-800' value="">Choose student</option>

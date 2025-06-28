@@ -11,6 +11,7 @@ import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
+import Memberstats from './components/Trainer/PersonalTraining/Memberstats'
 import Updatedietplan from './components/Trainer/Updatedietplan'
 import DisplayDietplan from './components/Trainer/DisplayDietplan'
 import Addsuppliment from "./components/Addsupplemets/Addsupliment"
@@ -100,6 +101,7 @@ function App() {
         <Route path='/trainer/genschedule' element={<GenSchedule/>}/>
         <Route path='/trainer/addtraining' element={<AddTraining/>}/>
         <Route path='/trainer/seetraining' element={<SeeTraining/>}/>
+        <Route path='/trainer/memberstats/:id' element={<Memberstats/>}/>
       </Routes>
     </div>
   )
