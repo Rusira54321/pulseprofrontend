@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard,Flame,Dumbbell,Activity} from 'lucide-react';
+import { LayoutDashboard,Flame,Dumbbell,Activity,EarthLock} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const TrainerSidebar = () => {
@@ -53,6 +53,13 @@ const TrainerSidebar = () => {
          >
            <Activity size={20} />
            <span>See Diet plans</span>
+         </Link>
+          <Link
+           to="/trainer/dashboard/genai"
+           className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+         >
+           <EarthLock size={20} />
+           <span>Generate with AI</span>
          </Link>
         </nav>
      </div>

@@ -11,8 +11,10 @@ import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
+import Updatedietplan from './components/Trainer/Updatedietplan'
 import DisplayDietplan from './components/Trainer/DisplayDietplan'
 import Addsuppliment from "./components/Addsupplemets/Addsupliment"
+import GenAi from './components/Trainer/GenAI/GenAi'
 import DisplayWorkoutplan from './components/Trainer/DisplayWorkoutplan'
 import DisplaySupplement from './components/DisplaySupplement/DisplaySupplement'
 import Supplements from "./components/Supplements/Supplements"
@@ -22,6 +24,8 @@ import ResetPassword from './components/ResetPassword/ResetPassword'
 import Dietplans from "./components/Trainer/Dietplan"
 import Home from './components/Home/Home'
 import Memberss from "./components/Trainer/Members"
+import GenDietplan from './components/Trainer/GenAI/GenDietplan'
+import GenSchedule from './components/Trainer/GenAI/GenSchedule'
 import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
 import UpdateWorkout from './components/Trainer/UpdateWorkout'
@@ -65,6 +69,7 @@ function App() {
           <Route path='dietplan' element={<Dietplans/>}/>
           <Route path='displayworkoutplan' element={<DisplayWorkoutplan/>}/>
           <Route path='displayDietplan' element={<DisplayDietplan/>}/>
+          <Route path='genai' element={<GenAi/>}/>
         </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>
@@ -86,6 +91,9 @@ function App() {
         <Route path='/update/workout/:id' element={<UpdateWorkout/>}/>
         <Route path='/AI/Admin/dietplan' element={<Dietplan/>}/>
         <Route path='/AI/Admin/schedule' element={<Schedule/>}/>
+        <Route path='/trainer/updatedietplan/:id' element={<Updatedietplan/>}/>
+        <Route path='/trainer/Gendietplan' element={<GenDietplan/>}/>
+        <Route path='/trainer/genschedule' element={<GenSchedule/>}/>
       </Routes>
     </div>
   )

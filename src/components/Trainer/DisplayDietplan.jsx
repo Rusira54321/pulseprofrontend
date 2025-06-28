@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const DisplayDietplan = () => {
   const URL = "http://localhost:5000/diet/getdietplan"
   const DELETE_URL = "http://localhost:5000/diet/deletedietplan"
   const [plans, setPlans] = useState([])
-
+  const navigate = useNavigate()
   useEffect(() => {
     const trainerusername = localStorage.getItem("trainerusername")
     const getPlans = async () => {
@@ -30,8 +31,8 @@ const DisplayDietplan = () => {
   }
 
   const handleEdit = (plan) => {
-    alert(`Edit clicked for ${plan.memberUsername}`)
-    // You can add modal or route navigation here
+    const id = plan._id
+    navigate(`/trainer/updatedietplan/${id}`)
   }
 
   return (
@@ -67,7 +68,8 @@ const DisplayDietplan = () => {
               <h3 className='text-2xl font-bold mb-2 text-teal-300'>{plan.memberUsername}</h3>
               <p className='text-sm text-gray-300 mb-1'><span className='font-semibold text-gray-200'>🎯 Goal:</span> {plan.goal}</p>
               <p className='text-sm text-gray-300 mb-1'><span className='font-semibold text-gray-200'>📅 Duration:</span> {plan.duration} weeks</p>
-              <p className='text-sm text-gray-300 mb-3'><span className='font-semibold text-gray-200'>🕒 Created:</span> {new Date(plan.createdAt).toLocaleDateString()}</p>
+              <p className='text-sm text-gray-300 mb-1'><span className='font-semibold text-gray-200'>🕒 Created:</span> {new Date(plan.createdAt).toLocaleDateString()}</p>
+              <p className='text-sm text-gray-300 mb-3'><span className='font-semibold text-gray-200'>🕒 Expired:</span> {new Date(plan.expiredAt).toLocaleDateString()}</p>
 
               <div className='space-y-4 mt-4'>
                 {plan.meals.map((meal, i) => (
