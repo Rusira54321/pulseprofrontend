@@ -21,6 +21,7 @@ import Supplements from "./components/Supplements/Supplements"
 import Members from './components/displaymembers/Members'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
+import Personaltraining from './components/Trainer/PersonalTraining/Personaltraining'
 import Dietplans from "./components/Trainer/Dietplan"
 import Home from './components/Home/Home'
 import Memberss from "./components/Trainer/Members"
@@ -30,6 +31,8 @@ import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
 import UpdateWorkout from './components/Trainer/UpdateWorkout'
 import Schedule from "./components/AdminAI/Schedule"
+import AddTraining from './components/Trainer/PersonalTraining/AddTraining'
+import SeeTraining from './components/Trainer/PersonalTraining/SeeTraining'
 import MarkAttendance from './components/Markattendance/MarkAttendance'
 import SeeAttendance from './components/SeeAttendance/SeeAttendance'
 import AI from "./components/AdminAI/Aifeatures"
@@ -70,6 +73,7 @@ function App() {
           <Route path='displayworkoutplan' element={<DisplayWorkoutplan/>}/>
           <Route path='displayDietplan' element={<DisplayDietplan/>}/>
           <Route path='genai' element={<GenAi/>}/>
+          <Route path='personaltrainer' element={<Personaltraining/>}/>
         </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>
@@ -94,6 +98,8 @@ function App() {
         <Route path='/trainer/updatedietplan/:id' element={<Updatedietplan/>}/>
         <Route path='/trainer/Gendietplan' element={<GenDietplan/>}/>
         <Route path='/trainer/genschedule' element={<GenSchedule/>}/>
+        <Route path='/trainer/addtraining' element={<AddTraining/>}/>
+        <Route path='/trainer/seetraining' element={<SeeTraining/>}/>
       </Routes>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard,Flame,Dumbbell,Activity,EarthLock} from 'lucide-react';
+import { LayoutDashboard,Flame,Dumbbell,Activity,EarthLock,Accessibility} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const TrainerSidebar = () => {
@@ -60,6 +60,13 @@ const TrainerSidebar = () => {
          >
            <EarthLock size={20} />
            <span>Generate with AI</span>
+         </Link>
+         <Link
+           to="/trainer/dashboard/personaltrainer"
+           className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+         >
+           <Accessibility size={20} />
+           <span>Personal training management</span>
          </Link>
         </nav>
      </div>
