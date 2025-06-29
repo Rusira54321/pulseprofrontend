@@ -11,25 +11,30 @@ import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
+import MemberDashboard from './components/Member/MemberDashboard'
 import Memberstats from './components/Trainer/PersonalTraining/Memberstats'
 import Updatedietplan from './components/Trainer/Updatedietplan'
 import DisplayDietplan from './components/Trainer/DisplayDietplan'
 import Addsuppliment from "./components/Addsupplemets/Addsupliment"
 import GenAi from './components/Trainer/GenAI/GenAi'
 import DisplayWorkoutplan from './components/Trainer/DisplayWorkoutplan'
+import Classes from './components/Member/Classes'
 import DisplaySupplement from './components/DisplaySupplement/DisplaySupplement'
 import Supplements from "./components/Supplements/Supplements"
 import Members from './components/displaymembers/Members'
+import Memberlayout from './components/Adminlayout/Memberlayout'
 import Layout from "./components/Adminlayout/Dashboardlayout"
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Personaltraining from './components/Trainer/PersonalTraining/Personaltraining'
 import Dietplans from "./components/Trainer/Dietplan"
 import Home from './components/Home/Home'
 import Memberss from "./components/Trainer/Members"
+import Dietplanss from "./components/Member/DietPlan"
 import GenDietplan from './components/Trainer/GenAI/GenDietplan'
 import GenSchedule from './components/Trainer/GenAI/GenSchedule'
 import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
+import Workoutplanss from "./components/Member/Workoutplan"
 import UpdateWorkout from './components/Trainer/UpdateWorkout'
 import Schedule from "./components/AdminAI/Schedule"
 import AddTraining from './components/Trainer/PersonalTraining/AddTraining'
@@ -65,7 +70,12 @@ function App() {
         </Route>
 
         {/* Standalone route (not using Homenavbar) */}
-
+        <Route path='/member' element={<Memberlayout/>}>
+          <Route index element={<MemberDashboard/>}/>
+          <Route path='workoutplan' element={<Workoutplanss/>}/>
+          <Route path='dietplan' element={<Dietplanss/>}/>
+          <Route path='classes' element={<Classes/>}/>
+        </Route>
         <Route path='/trainer/dashboard' element={<Trainerlayout/>}>
           <Route index element={<Trainerdashboard/>}/>
           <Route path='displaymembers' element={<Memberss/>}/>
@@ -102,6 +112,7 @@ function App() {
         <Route path='/trainer/addtraining' element={<AddTraining/>}/>
         <Route path='/trainer/seetraining' element={<SeeTraining/>}/>
         <Route path='/trainer/memberstats/:id' element={<Memberstats/>}/>
+        <Route path='/member/dashboard' element={<MemberDashboard/>}/>
       </Routes>
     </div>
   )
