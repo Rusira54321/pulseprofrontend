@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { toast, Bounce } from "react-toastify";
 import { motion } from "framer-motion";
-
+import {ShoppingCart} from 'lucide-react';
+import { Link } from 'react-router-dom';
 const DisplaySupplement = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [nutritions, setNutritions] = useState([]);
@@ -52,14 +53,17 @@ const DisplaySupplement = () => {
         });
     }
   };
+  const addtocart = (id) =>{
+    const stored = JSON.parse(localStorage.getItem("cartItems")) || [];
 
+  stored.push(id); // ✅ Always push, even if duplicate
+  localStorage.setItem("cartItems", JSON.stringify(stored));
+  }
   const handleUpdate = (id) => {
     window.location.href = `/update-supplement/${id}`;
   };
 
-  const handlePay = (id) => {
-    window.location.href = `/pay-supplement/${id}`;
-  };
+ 
 
   const filteredSupplements = nutritions.filter((item) =>
     item.supplimentName.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -74,7 +78,12 @@ const DisplaySupplement = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-2xl font-bold">Supplements</h1>
+        <h1 className="text-2xl font-bold flex items-center gap-3">
+          Supplements
+          <Link to={'/cart'} className="ml-2 flex items-center justify-center bg-green-700 hover:bg-green-800 rounded-full p-2 transition">
+            <ShoppingCart className="w-6 h-6 text-white" />
+          </Link>
+        </h1>
       </motion.div>
 
       {/* Search Bar */}
@@ -193,10 +202,10 @@ const DisplaySupplement = () => {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.05 }}
-                onClick={() => handlePay(supplement._id)}
+                onClick={() => addtocart(supplement._id)}
                 className="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white text-sm"
               >
-                Pay
+                Add to cart
               </motion.button>
             </div>
           </motion.div>

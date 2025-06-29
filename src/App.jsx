@@ -4,6 +4,7 @@ import Gymdashboard from './components/gymdashboard/gymdashboard'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
+import Cart from './components/Supplements/Cart'
 import UpdateTrainer from "./components/displaytrainer/UpdateTrainer"
 import Username from "./components/Username/Username"
 import Trainerlayout from "./components/Adminlayout/TrainerDashLayout"
@@ -113,6 +114,7 @@ function App() {
         <Route path='/trainer/seetraining' element={<SeeTraining/>}/>
         <Route path='/trainer/memberstats/:id' element={<Memberstats/>}/>
         <Route path='/member/dashboard' element={<MemberDashboard/>}/>
+        <Route path='/cart' element={<Cart/>}/>
       </Routes>
     </div>
   )
