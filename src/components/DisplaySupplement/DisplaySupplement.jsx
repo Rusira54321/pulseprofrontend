@@ -55,7 +55,21 @@ const DisplaySupplement = () => {
   };
   const addtocart = (id) =>{
     const stored = JSON.parse(localStorage.getItem("cartItems")) || [];
-
+    if(stored.includes(id)) 
+      {
+         toast.error("Item already in cart", {
+                                  position: "top-right",
+                                  autoClose: 5000,
+                                  hideProgressBar: false,
+                                  closeOnClick: false,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                  theme: "dark",
+                                  transition: Bounce,
+                                });
+        return; // Exit if item is already in cart
+      }
   stored.push(id); // ✅ Always push, even if duplicate
   localStorage.setItem("cartItems", JSON.stringify(stored));
   }

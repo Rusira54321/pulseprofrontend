@@ -37,6 +37,19 @@ const Cart = () => {
     setTotalPrices(updatedTotals);
   };
 
+  const handleRemove = (index, id) => {
+    // Remove from supplementsdata
+    const updatedSupplements = supplementsdata.filter((_, i) => i !== index);
+    setsupplementsdata(updatedSupplements);
+    // Remove from totalprices
+    const updatedTotals = totalprices.filter((_, i) => i !== index);
+    setTotalPrices(updatedTotals);
+    // Remove from localStorage
+    const itemsid = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const updatedIds = itemsid.filter(itemId => itemId !== id);
+    localStorage.setItem("cartItems", JSON.stringify(updatedIds));
+  };
+
   return (
     <div className='flex flex-col w-full min-h-screen bg-gray-900'>
       <motion.div
@@ -85,7 +98,10 @@ const Cart = () => {
                         <p className='text-red-400 font-semibold text-sm'>Out of stock</p>
                       )
                     }
-                    <button className='text-red-400 text-sm mt-2 w-0 hover:underline'>Remove</button>
+                    <button 
+                      className='text-red-400 text-sm mt-2 w-0 hover:underline'
+                      onClick={() => handleRemove(index, item._id)}
+                    >Remove</button>
                   </div>
 
                   <div className='flex flex-col w-2/8'>
