@@ -12,6 +12,7 @@ import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
+import UnsuccessfulPayment from './components/Payment/UnsuccessfulPayment'
 import MemberDashboard from './components/Member/MemberDashboard'
 import Memberstats from './components/Trainer/PersonalTraining/Memberstats'
 import Updatedietplan from './components/Trainer/Updatedietplan'
@@ -30,12 +31,14 @@ import Personaltraining from './components/Trainer/PersonalTraining/Personaltrai
 import Dietplans from "./components/Trainer/Dietplan"
 import Home from './components/Home/Home'
 import Memberss from "./components/Trainer/Members"
+import SuccessfulPayment from './components/Payment/SuccessfulPayment'
 import Dietplanss from "./components/Member/DietPlan"
 import GenDietplan from './components/Trainer/GenAI/GenDietplan'
 import GenSchedule from './components/Trainer/GenAI/GenSchedule'
 import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
 import Workoutplanss from "./components/Member/Workoutplan"
+import Cash from './components/Supplements/Cash'
 import UpdateWorkout from './components/Trainer/UpdateWorkout'
 import Schedule from "./components/AdminAI/Schedule"
 import AddTraining from './components/Trainer/PersonalTraining/AddTraining'
@@ -114,6 +117,9 @@ function App() {
         <Route path='/trainer/seetraining' element={<SeeTraining/>}/>
         <Route path='/trainer/memberstats/:id' element={<Memberstats/>}/>
         <Route path='/member/dashboard' element={<MemberDashboard/>}/>
+        <Route path='/unsuccessful-payment' element={<UnsuccessfulPayment/>}/>
+        <Route path='/successful-payment' element={<SuccessfulPayment/>}/>
+        <Route path='/cash' element={<Cash/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
     </div>

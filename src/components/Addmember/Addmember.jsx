@@ -13,7 +13,7 @@ const Addmember = () => {
     const [trainer,setTrainer] = useState("")
     const [data,setdata] = useState([])
     const [profile,setprofile] = useState(null)
-      
+    const [email,setemail] = useState("")
     useEffect(()=>{
         const key = localStorage.getItem("gymkey")
         const getdetails = async() =>{
@@ -40,6 +40,7 @@ const Addmember = () => {
         const formdata = new FormData();
         formdata.append("trainername", trainerNameFromServer); // ✅ Correct usage here
         formdata.append("name", name);
+        formdata.append("email",email)
         formdata.append("username", username);
         formdata.append("password", password);
         formdata.append("height", height);
@@ -99,6 +100,10 @@ const Addmember = () => {
                         <div className='flex gap-2'>
                              <p className='text-white ml-25 mt-4 w-1/2'>Weight in kg</p>
                              <input type='number' required  onChange={(e)=>{setweight(e.target.value)}} className='w-1/2 mr-15 mt-4 border border-gray-400 rounded px-3 py-2 text-white'></input>
+                        </div>
+                        <div className='flex gap-2'>
+                             <p className='text-white ml-25 mt-4 w-1/2'>Email</p>
+                             <input type='email' required  onChange={(e)=>{setemail(e.target.value)}} className='w-1/2 mr-15 mt-4 border border-gray-400 rounded px-3 py-2 text-white'></input>
                         </div>
                         <div className='flex gap-2'>
                              <p className='text-white ml-25 mt-4 w-1/2'>Trainer</p>
