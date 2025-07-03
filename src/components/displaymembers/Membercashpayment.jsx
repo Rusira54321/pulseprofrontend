@@ -13,12 +13,14 @@ const Membercashpayment = () => {
   const URL = "http://localhost:5000/payment/membercashpay"
   const handleSubmit = async(e) =>{
     e.preventDefault()
+    var gymkey = localStorage.getItem("gymkey")
     if(customerPayment>=totalPrice)
     {
         await axios.post(URL,{
             "items":details,
             "balance":balance,
-            "customerpayment":customerPayment
+            "customerpayment":customerPayment,
+            "key":gymkey
         }).then((res)=>{
                 navigate(`/success/pay`)
         })

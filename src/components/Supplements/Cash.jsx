@@ -24,13 +24,15 @@ const Cash = () => {
   }, [cart]);
   const handleSubmit = async(e) =>{
     e.preventDefault()
+    const gymkey = localStorage.getItem("gymkey")
     if(customerPayment >= totalPrice)
     {
        await axios.post("http://localhost:5000/payment/addpayment",{
         "items":cart,
         "totalpayment":totalPrice,
         "customerpayment":customerPayment,
-        "balance":balance
+        "balance":balance,
+        "key":gymkey
        }).then((res)=>{
           alert("Fsfd")
           navigate('/successful-payment')

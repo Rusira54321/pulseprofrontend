@@ -8,6 +8,7 @@ import Cart from './components/Supplements/Cart'
 import UpdateTrainer from "./components/displaytrainer/UpdateTrainer"
 import Username from "./components/Username/Username"
 import Trainerlayout from "./components/Adminlayout/TrainerDashLayout"
+import CustomerPaymenthistory from './components/Payment/CustomerPaymenthistory'
 import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
@@ -104,6 +105,7 @@ function App() {
             <Route path='addmember' element={<Addmember/>}/>
             <Route path='displayMember' element={<Members/>}/>
             <Route path='supplement' element={<Supplements/>}/>
+            <Route path='paymenthistory' element={<CustomerPaymenthistory/>}/>
             <Route path='AI/Admin' element={<AI/>}/>
             <Route path='seeAtendance' element={<SeeAttendance/>}/>
             <Route path='markAttendance' element={<MarkAttendance/>}/>

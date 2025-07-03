@@ -89,9 +89,11 @@ const Cart = () => {
     }
     else if(paymenttype=="Card")
     {
+        var gymkey = localStorage.getItem("gymkey")
          const stripe = await loadStripe("pk_test_51Rftx6KuSK8YHgFWvFScCIjTzIdBryqtqLp0fslQu7jFIOJSNezU8UgDOBxvuQ36pWD0jn3JUgZFN6EUoQSm99Zk00kN1GNJIk");
           const res = await axios.post(`http://localhost:5000/stripes/create-checkout-session`,{
-              items:newCartData
+              items:newCartData,
+              key:gymkey
           })
           const session = await res.data;
           const result = await stripe.redirectToCheckout({

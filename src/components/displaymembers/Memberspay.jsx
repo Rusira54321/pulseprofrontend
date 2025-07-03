@@ -88,6 +88,7 @@ const Memberspay = () => {
 
     }else if(paymenttype=="Card")
     {
+        var gymkey = localStorage.getItem("gymkey")
         const priceinUSD = await convertCurrency("LKR", "USD", packagedata.price)
         items[0].planID =packageid 
         items[0].memberusername = member.username
@@ -95,7 +96,8 @@ const Memberspay = () => {
         items[0].totalpriceinusd = priceinUSD
         const stripe = await loadStripe("pk_test_51Rftx6KuSK8YHgFWvFScCIjTzIdBryqtqLp0fslQu7jFIOJSNezU8UgDOBxvuQ36pWD0jn3JUgZFN6EUoQSm99Zk00kN1GNJIk");
           const res = await axios.post(`http://localhost:5000/stripes/memberpayment`,{
-              items:items
+              items:items,
+              key:gymkey
           })
           const session = await res.data;
           const result = await stripe.redirectToCheckout({
