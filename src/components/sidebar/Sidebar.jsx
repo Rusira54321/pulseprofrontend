@@ -74,6 +74,13 @@ const Sidebar = () => {
           <ContactRound size={20} />
           <span>Attendance report</span>
         </Link>
+         <Link
+          to="/admin/dashbaord/paymentplan"
+          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+        >
+          <Dumbbell size={20} />
+          <span>Membership</span>
+        </Link>
       </nav>
     </div>
   )

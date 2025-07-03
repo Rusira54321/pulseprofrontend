@@ -22,12 +22,14 @@ const MarkAttendance = () => {
   const URLS = "http://localhost:5000/Attendance/addAttendance"
 
   const handle = async (userId, status, name, username) => {
+    const key = localStorage.getItem("gymkey")
     try {
       await axios.post(URLS, {
         id: userId,
         name,
         username,
-        attendance: status
+        attendance: status,
+        key:key
       })
       // Update local state immediately
       setusers(prev =>

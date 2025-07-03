@@ -68,7 +68,6 @@ const Cart = () => {
       });
     }
     setcartdata(newCartData);
-    console.log(newCartData);
     if (newCartData.length === 0) {
       toast.error("No items in the cart", {
         position: "top-right",
@@ -85,7 +84,7 @@ const Cart = () => {
     }
     if(paymenttype=="Cash")
     {
-        navigate("/cash")
+        navigate(`/cash`,{state:{cart:newCartData}})
         return
     }
     else if(paymenttype=="Card")

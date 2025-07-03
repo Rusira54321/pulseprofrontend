@@ -12,6 +12,7 @@ import Displaytrainers from "./components/displaytrainer/DisplayTrainer"
 import Email from './components/Email/Email'
 import Updatesuppliment from "./components/DisplaySupplement/UpdateSuppliment"
 import Otp from './components/Otp/Otp'
+import Membercashpayment from './components/displaymembers/Membercashpayment'
 import UnsuccessfulPayment from './components/Payment/UnsuccessfulPayment'
 import MemberDashboard from './components/Member/MemberDashboard'
 import Memberstats from './components/Trainer/PersonalTraining/Memberstats'
@@ -26,10 +27,14 @@ import Supplements from "./components/Supplements/Supplements"
 import Members from './components/displaymembers/Members'
 import Memberlayout from './components/Adminlayout/Memberlayout'
 import Layout from "./components/Adminlayout/Dashboardlayout"
+import Addmembership from './components/Paymentplan/Addmembership'
+import DisplayMembership from './components/Paymentplan/DisplayMembership'
 import ResetPassword from './components/ResetPassword/ResetPassword'
+import Successpay from "./components/displaymembers/Successfullpaymentpage"
 import Personaltraining from './components/Trainer/PersonalTraining/Personaltraining'
 import Dietplans from "./components/Trainer/Dietplan"
 import Home from './components/Home/Home'
+import Memberspay from './components/displaymembers/Memberspay'
 import Memberss from "./components/Trainer/Members"
 import SuccessfulPayment from './components/Payment/SuccessfulPayment'
 import Dietplanss from "./components/Member/DietPlan"
@@ -37,6 +42,7 @@ import GenDietplan from './components/Trainer/GenAI/GenDietplan'
 import GenSchedule from './components/Trainer/GenAI/GenSchedule'
 import UpdateMember from './components/Trainer/UpdateMember'
 import Dietplan from "./components/AdminAI/Dietplan"
+import Paymentplan from './components/Paymentplan/Paymentplan'
 import Workoutplanss from "./components/Member/Workoutplan"
 import Cash from './components/Supplements/Cash'
 import UpdateWorkout from './components/Trainer/UpdateWorkout'
@@ -48,6 +54,7 @@ import SeeAttendance from './components/SeeAttendance/SeeAttendance'
 import AI from "./components/AdminAI/Aifeatures"
 import WorkoutPlan from './components/Trainer/WorkoutPlan'
 import Homenavbar from './components/Homenavbar/Homenavbar'
+import EditMembershipPlan from './components/Paymentplan/EditMembershipPlan'
 import Addtrainer from './components/addtrainer/Addtrainer'
 import Trainerlogin from './components/Trainerlogin/Trainerlogin'
 import Memberlogin from './components/memberlogin/Memberlogin'
@@ -100,6 +107,7 @@ function App() {
             <Route path='AI/Admin' element={<AI/>}/>
             <Route path='seeAtendance' element={<SeeAttendance/>}/>
             <Route path='markAttendance' element={<MarkAttendance/>}/>
+            <Route path='paymentplan' element={<Paymentplan/>}/>
         </Route>
         <Route path='/trainer/memberUpdate/:id/:gym' element={<UpdateMember/>}/>
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>
@@ -121,6 +129,12 @@ function App() {
         <Route path='/successful-payment' element={<SuccessfulPayment/>}/>
         <Route path='/cash' element={<Cash/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/displaymembership' element={<DisplayMembership/>}/>
+        <Route path='/addmembership' element={<Addmembership/>}/>
+        <Route path='/editmembership/:id' element={<EditMembershipPlan/>}/>
+        <Route path='/memberspay/:id' element={<Memberspay/>}/>
+        <Route path='/success/pay' element={<Successpay/>}/>
+        <Route path='/member/cashpayment' element={<Membercashpayment/>}/>
       </Routes>
     </div>
   )

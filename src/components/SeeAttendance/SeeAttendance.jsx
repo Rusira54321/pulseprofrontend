@@ -9,7 +9,6 @@ const SeeAttendance = () => {
   const month = String(today.getMonth() + 1).padStart(2, '0');
   const year = today.getFullYear();
   const customFormat = `${day}-${month}-${year}`;
-
   const [attendance, setattendance] = useState([])
   const [date, setdate] = useState(customFormat)
   const [error, seterror] = useState("")
@@ -39,11 +38,13 @@ const SeeAttendance = () => {
       setdate(newFormattedDate);
     }
   }
-
+  const memberURL = "http://localhost:5000/get/getmemberusernamebyadmin"
   useEffect(() => {
+    const gymkey = localStorage.getItem("gymkey")
     const getAttendance = async () => {
       await axios.post(URL, {
-        "day": date
+        "day": date,
+        "key":gymkey
       }).then((res) => {
         setattendance(res.data.Attendance)
         seterror("")

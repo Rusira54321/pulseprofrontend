@@ -44,7 +44,9 @@ const Members = () => {
     }
     getmembers()
   },[])  
-  
+  const hadlePay = (id) =>{
+    navigate(`/memberspay/${id}`)
+  }
   const filteredmembers = members.filter(member=>
     member.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -89,7 +91,7 @@ const Members = () => {
                                                     memberdelete(member._id)
                                                 }}>Delete</button>
                                                 <button onClick={()=>{handleEdit(member._id)}} className="px-4 py-1.5 cursor-pointer bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 hover:scale-105 transition-all duration-300 ease-in-out">Edit</button>
-                                                <button className="px-4 py-1.5 cursor-pointer bg-emerald-500 text-white rounded-md shadow hover:bg-emerald-600 hover:scale-105 transition-all duration-300 ease-in-out">Pay</button>
+                                                <button onClick={()=>{hadlePay(member._id)}} className="px-4 py-1.5 cursor-pointer bg-emerald-500 text-white rounded-md shadow hover:bg-emerald-600 hover:scale-105 transition-all duration-300 ease-in-out">Pay</button>
                                         </div>
                                 </div>
                             ))
