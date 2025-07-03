@@ -61,6 +61,7 @@ const WorkoutPlan = () => {
     e.preventDefault()
     const trainerusername = localStorage.getItem("trainerusername")
     const { memberUsername, goal, planname, workouts, duration } = form
+    const gymkey = members[0].gym
     const addworkout = async () => {
       await axios.post(workoutURL, {
         "goal": goal,
@@ -68,7 +69,8 @@ const WorkoutPlan = () => {
         "memberUsername": memberUsername,
         "planname": planname,
         "workouts": workouts,
-        "trainerusername": trainerusername
+        "trainerusername": trainerusername,
+        "gym":gymkey
       }).then((res) => {
         toast.success(res.data.message, {
           position: "top-right",

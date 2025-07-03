@@ -32,6 +32,7 @@ const Dietplan = () => {
       await axios.post(URL, {
         "username": username
       }).then((res) => {
+        console.log(res.data.members)
         setmembers(res.data.members)
       })
     }
@@ -59,13 +60,15 @@ const Dietplan = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const gym = members[0].gym
     const usernames = localStorage.getItem("trainerusername")
     await axios.post(addplanURL, {
       "memberUsername": form.memberUsername,
       "trainerUsername": usernames,
       "goal": form.goal,
       "duration": form.duration,
-      "meals": form.meals
+      "meals": form.meals,
+      "gym":gym
     }).then((res) => {
       toast.success(res.data.message, {
         position: "top-right",
