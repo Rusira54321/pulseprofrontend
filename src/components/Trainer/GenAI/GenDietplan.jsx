@@ -8,10 +8,12 @@ const GenDietplan = () => {
   const [level, setLevel] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
+  const [duration,setduration] = useState(0)
+  const [durationunit,setdurationunit] = useState("")
   const [schedule, setSchedule] = useState(null);
   const [loading, setLoading] = useState(false);
   const [members,setmembers] = useState([])
-  const sendtothememberURL = ""
+  const sendtothememberURL = "http://localhost:5000/ai/adddatadb"
   const memberURL = "http://localhost:5000/get/getmemberbyTrainer"
   const URL = "http://localhost:5000/ai/creatediet";
   useEffect(()=>{
@@ -36,6 +38,8 @@ const GenDietplan = () => {
         level,
         weight: Number(weight),
         height: Number(height),
+        duration:Number(duration),
+        durationunit
       });
       
       setSchedule(res.data.schedule);
@@ -46,8 +50,17 @@ const GenDietplan = () => {
       setLoading(false);
     }
   };
-  const sendtothemember = () =>{
-    alert("cant sent to the member")
+  const sendtothemember = async() =>{
+      await axios.post(sendtothememberURL,{
+        "duration":duration,
+        "durationunit":durationunit,
+        "dietplan":schedule,
+        "memberusername":name
+      }).then((res)=>{
+        alert(res.data.message)
+      }).catch((error)=>{
+        alert(error.response.data.message)
+      })
   }
   const renderMeal = (meal) => (
     <motion.div
@@ -124,7 +137,35 @@ const GenDietplan = () => {
             />
           </label>
         ))}
-
+         <label className="flex flex-col mt-6 text-white font-medium">
+          <span className="mb-2 text-lg">Duration</span>
+          <input
+              type="number"
+              required
+              value={duration}
+              min={0}
+              onChange={(e) => setduration(e.target.value)}
+              placeholder="Enter duration"
+              className="rounded-lg border border-green-400 bg-gray-900 px-4 py-3 text-lg placeholder-green-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-60 transition"
+            />
+        </label>
+        <label className="flex flex-col mt-6 text-white font-medium">
+          <span className="mb-2 text-lg">Duration Unit</span>
+          <select
+            required
+            value={durationunit}
+            onChange={(e) => setdurationunit(e.target.value)}
+            className="rounded-lg border border-green-400 bg-gray-900 px-4 py-3 text-lg text-green-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-60 transition"
+          >
+            <option value="" disabled>
+              Select Duration unit
+            </option>
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+          </select>
+        </label>
         {/* Level select */}
         <label className="flex flex-col mt-6 text-white font-medium">
           <span className="mb-2 text-lg">Fitness Level</span>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
@@ -9,12 +9,38 @@ const GenSchedule = () => {
     const [weight, setWeight] = useState(0);
     const [height, setHeight] = useState(0);
     const [day, setDay] = useState("");
+    const [duration,setduration] = useState(0)
+    const [durationunit,setdurationunit] = useState("")
     const [level, setLevel] = useState("");
     const [schedule, setSchedule] = useState(null);
     const [loading, setLoading] = useState(false);
-  
+    const [members,setmembers] = useState([])
+    const addscheduleURL = "http://localhost:5000/ai/addschedule"
     const URL = "http://localhost:5000/ai/createSchedule";
-  
+    const memberURL = "http://localhost:5000/get/getmemberbyTrainer"
+    const sendtothemember = async() =>{
+        await axios.post(addscheduleURL,{
+          "memberusername":name,
+          "duration":duration,
+          "durationunit":durationunit,
+          "schedule":schedule
+        }).then((res)=>{
+          alert(res.data.message)
+        }).catch((error)=>{
+          alert(error.response.data.message)
+        })
+    }
+    useEffect(()=>{
+      const username = localStorage.getItem("trainerusername")
+        const getmembername = async() =>{
+            await axios.post(memberURL,{
+                "username":username
+            }).then((res)=>{
+              setmembers(res.data.members)
+            })
+        }
+        getmembername()
+    },[])  
     const handleSubmit = async (e) => {
       e.preventDefault();
       setLoading(true);
@@ -26,6 +52,8 @@ const GenSchedule = () => {
           height,
           weight,
           daysAvailable: day,
+          duration,
+          durationunit
         });
         setSchedule(res.data.schedule);
       } catch (err) {
@@ -57,14 +85,53 @@ const GenSchedule = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
+          <label className="flex flex-col mt-6 text-white font-medium">
+            <span className="mb-2 text-lg">Name</span>
+            <select
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="rounded-lg border border-green-400 bg-gray-900 px-4 py-3 text-lg text-green-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-60 transition"
+            >
+              <option value="" disabled>
+                Select Member name
+              </option>
+              {
+                members.length!=0 && members.map((memberr,index)=>(
+                      <option key={index} value={memberr.username}>{memberr.username}</option>
+                ))
+              }
+            </select>
+          </label>
+          <label  className="flex flex-col mt-6 text-white font-medium">
+              <span className="mb-2 text-lg">Duration</span>
+              <input
+                type="number"
+                required
+                value={duration}
+                min={0}
+                onChange={(e) => setduration(e.target.value)}
+                placeholder="Enter duration"
+                className="rounded-lg border border-green-400 bg-gray-900 px-4 py-3 text-lg placeholder-green-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-60 transition"
+              />
+            </label>
+            <label className="flex flex-col mt-6 text-white font-medium">
+            <span className="mb-2 text-lg">duration unit</span>
+            <select
+              required
+              value={durationunit}
+              onChange={(e) => setdurationunit(e.target.value)}
+              className="rounded-lg border border-green-400 bg-gray-900 px-4 py-3 text-lg text-green-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-60 transition"
+            >
+              <option value="" disabled>
+                Select duration unit
+              </option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+            </select>
+          </label>
           {[
-            {
-              label: "Name",
-              type: "text",
-              value: name,
-              setValue: setName,
-              placeholder: "Your name",
-            },
             {
               label: "Goal",
               type: "text",
@@ -166,6 +233,14 @@ const GenSchedule = () => {
                 </ul>
               </div>
             ))}
+            <motion.button
+            onClick={sendtothemember}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="mt-8 w-full py-4 font-bold text-xl rounded-xl text-black bg-green-400 shadow-lg shadow-green-500/60 hover:bg-green-500 transition-colors duration-300"
+            >
+              Send to the Member
+            </motion.button>
           </motion.div>
         )}
       </div>
