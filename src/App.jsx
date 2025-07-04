@@ -1,6 +1,6 @@
 import './App.css'
 import {ToastContainer} from "react-toastify"
-import Gymdashboard from './components/gymdashboard/gymdashboard'
+import Gymdashboard from './components/gymdashboard/Gymdashboard'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"

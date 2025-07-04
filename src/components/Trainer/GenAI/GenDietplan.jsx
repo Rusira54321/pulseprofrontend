@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from 'react';
 const GenDietplan = () => {
    const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
@@ -9,9 +10,21 @@ const GenDietplan = () => {
   const [height, setHeight] = useState("");
   const [schedule, setSchedule] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [members,setmembers] = useState([])
+  const sendtothememberURL = ""
+  const memberURL = "http://localhost:5000/get/getmemberbyTrainer"
   const URL = "http://localhost:5000/ai/creatediet";
-
+  useEffect(()=>{
+    const memberusername = localStorage.getItem("trainerusername")
+    const getmemebers = async() =>{
+        await axios.post(memberURL,{
+          "username":memberusername
+        }).then((res)=>{
+          setmembers(res.data.members)
+        })
+    }
+    getmemebers()
+  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -33,7 +46,9 @@ const GenDietplan = () => {
       setLoading(false);
     }
   };
-
+  const sendtothemember = () =>{
+    alert("cant sent to the member")
+  }
   const renderMeal = (meal) => (
     <motion.div
       key={meal.name}
@@ -73,8 +88,25 @@ const GenDietplan = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         {/* Form fields */}
+        <label className="flex flex-col mt-6 text-white font-medium">
+          <span className="mb-2 text-lg">Member Name</span>
+          <select
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="rounded-lg border border-green-400 bg-gray-900 px-4 py-3 text-lg text-green-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-60 transition"
+          >
+            <option value="" disabled>
+              Select Member
+            </option>
+            {
+              members.length!=0 && members.map((member,index)=>(
+                <option key={index} value={member.username}>{member.username}</option>
+              ))
+            }
+          </select>
+        </label>
         {[
-          { label: "Name", type: "text", value: name, setValue: setName, placeholder: "Your name" },
           { label: "Goal", type: "text", value: goal, setValue: setGoal, placeholder: "Your goal (e.g., Weight Loss)" },
           { label: "Weight (kg)", type: "number", value: weight, setValue: setWeight, placeholder: "Your weight in kg", min: 0 },
           { label: "Height (cm)", type: "number", value: height, setValue: setHeight, placeholder: "Your height in cm", min: 0 },
@@ -170,6 +202,14 @@ const GenDietplan = () => {
                 })}
               </div>
             ))}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="mt-8 w-full py-4 font-bold text-xl rounded-xl text-black bg-green-400 shadow-lg shadow-green-500/60 hover:bg-green-500 transition-colors duration-300"
+              onClick={sendtothemember}
+            >
+              Send to the Member
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
