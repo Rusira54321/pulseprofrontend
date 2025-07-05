@@ -8,7 +8,8 @@ import {
   EarthLock,
   Contact,
   ContactRound,
-  CircleDollarSign
+  CircleDollarSign,
+  Bell
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -33,6 +34,8 @@ const Sidebar = () => {
         <SidebarLink to="/admin/dashbaord/seeAtendance" icon={<ContactRound size={20} />} text="Attendance Report" />
         <SidebarLink to="/admin/dashbaord/paymentplan" icon={<Dumbbell size={20} />} text="Membership" />
         <SidebarLink to="/admin/dashbaord/paymenthistory" icon={<CircleDollarSign size={20} />} text="Customer Payment History" />
+        <SidebarLink to="/admin/dashbaord/seenotification" icon={<Bell size={20}/>} text="See notifications"/>
+        <SidebarLink to="/admin/dashbaord/sendnotification" icon={<Bell size={20}/>} text="Send notifications"/>
       </nav>
     </div>
   );

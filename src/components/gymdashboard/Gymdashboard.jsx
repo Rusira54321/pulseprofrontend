@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
-import { useEffect } from 'react'
+import { useEffect,useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Dumbbell } from 'lucide-react'
 import MonthlyRevenueChart from '../charts/MonthlyRevenueChart'
 import MonthlyAttendanceChart from '../charts/MonthlyAttendanceChart '
 const Gymdashboard = () => {
+  
+  const registeredRef = useRef(false)
   const numberofmemberURL = "http://localhost:5000/auth/sumtotalmembers"
   const URL = "http://localhost:5000/auth/getgym"
   const revenueURL = "http://localhost:5000/auth/totalrevenue"
@@ -16,6 +18,7 @@ const Gymdashboard = () => {
   const [gymdata,setgymdata] = useState({})
   const [numberofTrainers,setnumberOfTrainers] = useState()
   useEffect(()=>{
+ 
     const gymkey = localStorage.getItem("gymkey")
     const getgymdata = async() =>{
         await axios.post(URL,{

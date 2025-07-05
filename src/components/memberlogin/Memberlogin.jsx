@@ -18,6 +18,14 @@ const Memberlogin = () => {
             "username":username,
             "password":password
         }).then((res)=>{ 
+            if(localStorage.getItem("gymkey"))
+            {
+                localStorage.removeItem("gymkey")
+            }
+            if(localStorage.getItem("trainerusername"))
+            {
+                localStorage.removeItem("trainerusername")
+            }
             localStorage.setItem("memberkey",res.data.member.username)
             navigate(`/member`)
         }).catch((error)=>{

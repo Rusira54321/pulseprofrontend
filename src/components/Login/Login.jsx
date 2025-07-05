@@ -15,6 +15,14 @@ const Login = () => {
             password:password
         }).then((res)=>{
             navigate("/admin/dashbaord")
+            if(localStorage.getItem("memberkey"))
+            {
+                localStorage.removeItem("memberkey")
+            }
+            if(localStorage.getItem("trainerusername"))
+            {
+                localStorage.removeItem("trainerusername")
+            }
             localStorage.setItem("token",res.data.token)
             localStorage.setItem("gymkey",username)
         }).catch((error)=>{

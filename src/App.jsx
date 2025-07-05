@@ -5,6 +5,7 @@ import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import {Route,Routes} from "react-router-dom"
 import Cart from './components/Supplements/Cart'
+import Notifications from './Notifications'
 import UpdateTrainer from "./components/displaytrainer/UpdateTrainer"
 import Username from "./components/Username/Username"
 import Trainerlayout from "./components/Adminlayout/TrainerDashLayout"
@@ -34,6 +35,8 @@ import ResetPassword from './components/ResetPassword/ResetPassword'
 import Successpay from "./components/displaymembers/Successfullpaymentpage"
 import Personaltraining from './components/Trainer/PersonalTraining/Personaltraining'
 import Dietplans from "./components/Trainer/Dietplan"
+import AIDietplan from "./components/AdminAI/DisplayDietplan"
+import AIschedule from "./components/AdminAI/DisplaySchedule"
 import Home from './components/Home/Home'
 import Memberspay from './components/displaymembers/Memberspay'
 import Memberss from "./components/Trainer/Members"
@@ -62,8 +65,8 @@ import Memberlogin from './components/memberlogin/Memberlogin'
 import Trainerdashboard from './components/trainerdashboard/Trainerdashboard'
 import Addmember from './components/Addmember/Addmember'
 import UpdateMembers from './components/displaymembers/UpdateMembers'
+import SendNotification from './SendNotification'
 function App() {
-
   return (
     <div>
       <ToastContainer />
@@ -87,6 +90,10 @@ function App() {
           <Route path='workoutplan' element={<Workoutplanss/>}/>
           <Route path='dietplan' element={<Dietplanss/>}/>
           <Route path='classes' element={<Classes/>}/>
+          <Route path='getdietplan' element={<AIDietplan/>}/>
+          <Route path='getaischedule' element={<AIschedule/>}/>
+          <Route path='seenotification' element={<Notifications/>}/>
+          <Route path='sendnotification' element={<SendNotification/>}/>
         </Route>
         <Route path='/trainer/dashboard' element={<Trainerlayout/>}>
           <Route index element={<Trainerdashboard/>}/>
@@ -97,6 +104,8 @@ function App() {
           <Route path='displayDietplan' element={<DisplayDietplan/>}/>
           <Route path='genai' element={<GenAi/>}/>
           <Route path='personaltrainer' element={<Personaltraining/>}/>
+          <Route path='seenotification' element={<Notifications/>}/>
+          <Route path='sendnotification' element={<SendNotification/>}/>
         </Route>
         <Route path='/admin/dashbaord' element={<Layout/>}>
             <Route path='displaytrainer' element={<Displaytrainers/>}/>
@@ -110,6 +119,8 @@ function App() {
             <Route path='seeAtendance' element={<SeeAttendance/>}/>
             <Route path='markAttendance' element={<MarkAttendance/>}/>
             <Route path='paymentplan' element={<Paymentplan/>}/>
+            <Route path='seenotification' element={<Notifications/>}/>
+            <Route path='sendnotification' element={<SendNotification/>}/>
         </Route>
         <Route path='/trainer/memberUpdate/:id/:gym' element={<UpdateMember/>}/>
         <Route path='/addsuplliment' element={<Addsuppliment/>}/>

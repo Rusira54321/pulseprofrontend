@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { LayoutDashboard,Flame,Dumbbell,Apple} from 'lucide-react';
+import { LayoutDashboard,Flame,Dumbbell,Apple,Bell} from 'lucide-react';
 
 const MemberSidebar = () => {
   return (
@@ -39,7 +39,35 @@ const MemberSidebar = () => {
              >
                <Dumbbell size={20} />
                <span>Classes</span>
-             </Link>            
+             </Link>
+              <Link
+               to="/member/getdietplan"
+               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+             >
+               <Apple size={20} />
+               <span>🤖 AI-Powered Diet</span>
+             </Link>     
+             <Link
+               to="/member/getaischedule"
+               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+             >
+               <Flame size={20} />
+               <span>🤖 AI-Powered workout</span>
+             </Link>    
+              <Link
+               to="/member/seenotification"
+               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+             >
+               <Bell size={20} />
+               <span>See notification</span>
+             </Link> 
+              <Link
+               to="/member/sendnotification"
+               className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition"
+             >
+               <Bell size={20} />
+               <span>Send notification</span>
+             </Link> 
             </nav>
          </div>
   )

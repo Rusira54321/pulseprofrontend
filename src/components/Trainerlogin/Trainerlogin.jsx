@@ -13,6 +13,14 @@ const Trainerlogin = () => {
         await axios.post(url,{
             username,password
         }).then((res)=>{
+                if(localStorage.getItem("gymkey"))
+                {
+                    localStorage.removeItem("gymkey")
+                }
+                if(localStorage.getItem("memberkey"))
+                {
+                    localStorage.removeItem("memberkey")
+                }
                 localStorage.setItem("trainertoken",res.data.token)
                 localStorage.setItem("trainerusername",username)
                 navigate("/trainer/dashboard")
