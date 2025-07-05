@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { toast, Bounce } from "react-toastify";
 import { motion } from "framer-motion";
-import {ShoppingCart} from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ShoppingCart } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+
 const DisplaySupplement = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [nutritions, setNutritions] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const URL = "http://localhost:5000/suppliment/getsuppliment";
+  const navigate = useNavigate();
 
   useEffect(() => {
     const key = localStorage.getItem("gymkey");
@@ -53,31 +55,28 @@ const DisplaySupplement = () => {
         });
     }
   };
-  const addtocart = (id) =>{
+  const addtocart = (id) => {
     const stored = JSON.parse(localStorage.getItem("cartItems")) || [];
-    if(stored.includes(id)) 
-      {
-         toast.error("Item already in cart", {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: false,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                  theme: "dark",
-                                  transition: Bounce,
-                                });
-        return; // Exit if item is already in cart
-      }
-  stored.push(id); // ✅ Always push, even if duplicate
-  localStorage.setItem("cartItems", JSON.stringify(stored));
+    if (stored.includes(id)) {
+      toast.error("Item already in cart", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      return; // Exit if item is already in cart
+    }
+    stored.push(id);
+    localStorage.setItem("cartItems", JSON.stringify(stored));
   }
   const handleUpdate = (id) => {
     window.location.href = `/update-supplement/${id}`;
   };
-
- 
 
   const filteredSupplements = nutritions.filter((item) =>
     item.supplimentName.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -85,7 +84,18 @@ const DisplaySupplement = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 px-6 py-8 text-white">
+    <div className="min-h-screen bg-gray-900 px-6 py-8 text-white relative">
+      {/* Back Arrow Button */}
+      <button
+        onClick={() => navigate('/admin/dashbaord/supplement')}
+        className="absolute cursor-pointer top-6 left-6 z-30 bg-gray-900/80 hover:bg-gray-800 text-yellow-400 rounded-full p-3 shadow-lg transition-all duration-200"
+        aria-label="Go Back"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
       <motion.div
         className="flex p-5 items-center mb-5 justify-center"
         initial={{ opacity: 0, y: -30 }}

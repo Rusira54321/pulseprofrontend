@@ -1,45 +1,60 @@
 import React from 'react'
-import { useState, useEffect,useRef} from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 const Trainerdashboard = () => {
 
-  const [trainer,settrainer] = useState("")
-  const [numberofmembers,setnumberofmembers] = useState(0)
-  const [numberofclasses,setnumberofclasses] = useState(0)
+  const [trainer, settrainer] = useState("")
+  const [numberofmembers, setnumberofmembers] = useState(0)
+  const [numberofclasses, setnumberofclasses] = useState(0)
   const URL = "http://localhost:5000/trainer/gettrainername"
   const numberofclassesurl = "http://localhost:5000/class/numberoftrainingsessions"
   const numberofmemberurl = "http://localhost:5000/get/getnumberofmembers"
-  useEffect(()=>{
+  const navigate = useNavigate()
+
+  useEffect(() => {
     const username = localStorage.getItem("trainerusername")
-    const gettrainerdetails = async() =>{
-        await axios.post(URL,{
-          "username":username
-        }).then((res)=>{
-          settrainer(res.data.name)
-        })
+    const gettrainerdetails = async () => {
+      await axios.post(URL, {
+        "username": username
+      }).then((res) => {
+        settrainer(res.data.name)
+      })
     }
     gettrainerdetails()
-    const getnumberofmembers = async() =>{
-      await axios.post(numberofmemberurl,{
-        "username":username
-      }).then((res)=>{
+    const getnumberofmembers = async () => {
+      await axios.post(numberofmemberurl, {
+        "username": username
+      }).then((res) => {
         setnumberofmembers(res.data.numberofmembers)
       })
     }
     getnumberofmembers()
-    const getnumberofclasses = async(req,res) =>{
-        await axios.post(numberofclassesurl,{
-          "username":username
-        }).then((res)=>{
-          setnumberofclasses(res.data.numberofclasses)
-        })
+    const getnumberofclasses = async () => {
+      await axios.post(numberofclassesurl, {
+        "username": username
+      }).then((res) => {
+        setnumberofclasses(res.data.numberofclasses)
+      })
     }
     getnumberofclasses()
-  },[])
+  }, [])
+
   return (
-    <div className='flex flex-col w-full min-h-screen  bg-gray-800'>
+    <div className='flex flex-col w-full min-h-screen bg-gray-800 relative'>
+      {/* Back Arrow Button */}
+      <button
+        onClick={() => navigate('/')}
+        className="absolute cursor-pointer top-6 left-6 z-30 bg-gray-900/80 hover:bg-gray-800 text-green-400 rounded-full p-3 shadow-lg transition-all duration-200"
+        aria-label="Go Back"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
       <div className='flex justify-center mt-20 w-full'>
         <motion.h1
           className='text-3xl md:text-4xl font-extrabold drop-shadow-lg bg-gradient-to-r from-emerald-400 via-blue-400 to-indigo-500 bg-clip-text text-transparent px-4 py-2 rounded-lg text-center'
