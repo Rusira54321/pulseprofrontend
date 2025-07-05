@@ -11,7 +11,7 @@ const AdminLayout = () => {
     const role = "admin";
 
     socketRef.current = io("http://localhost:5000", {
-      transports: ["websocket"],
+      transports: ["websocket","polling"],
     });
 
     socketRef.current.on("connect", () => {

@@ -7,7 +7,7 @@ const Notifications = () => {
 
   useEffect(() => {
     socketRef.current = io("http://localhost:5000", {
-      transports: ["websocket"],
+      transports: ["websocket", "polling"],
     });
 
     const gym = localStorage.getItem("gymkey");
@@ -33,14 +33,25 @@ const Notifications = () => {
         socketRef.current.emit("register", { username, role });
         console.log("✅ Registered to socket:", { username, role, id: socketRef.current.id });
       });
+
+      // Handle incoming notifications
+      socketRef.current.on("receiveNotification", (notif) => {
+        console.log("📥 Notification received:", notif);
+        setNotifications((prev) => [notif, ...prev]);
+      });
     }
 
-    socketRef.current.on("receiveNotification", (notif) => {
-      console.log("📥 Notification received:", notif);
-      setNotifications((prev) => [notif, ...prev]);
-    });
-
+    // Cleanup function
     return () => {
+      // Mark notifications as read when leaving the page
+      if (username && role) {
+        fetch("http://localhost:5000/notification/markread", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, role }),
+        });
+      }
+
       if (socketRef.current) {
         socketRef.current.off("receiveNotification");
         socketRef.current.disconnect();
@@ -68,7 +79,7 @@ const Notifications = () => {
                 </span>
                 <div>
                   <p className="font-semibold text-green-300 text-lg">
-                    {n.senderUsername}{" "}
+                    {n.senderUsername}
                     <span className="text-xs text-green-400 bg-green-900/40 px-2 py-1 rounded ml-2">
                       {n.senderRole}
                     </span>
