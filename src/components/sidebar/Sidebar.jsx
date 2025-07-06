@@ -29,7 +29,6 @@ const Sidebar = () => {
         <SidebarLink to="/admin/dashbaord/displayMember" icon={<Flame size={20} />} text="Display Members" />
         <SidebarLink to="/admin/dashbaord/displaytrainer" icon={<Dumbbell size={20} />} text="Display Trainer" />
         <SidebarLink to="/admin/dashbaord/supplement" icon={<ShoppingBasket size={20} />} text="Supplements" />
-        <SidebarLink to="/admin/dashbaord/AI/Admin" icon={<EarthLock size={20} />} text="Generate with AI" />
         <SidebarLink to="/admin/dashbaord/markAttendance" icon={<Contact size={20} />} text="Mark Attendance" />
         <SidebarLink to="/admin/dashbaord/seeAtendance" icon={<ContactRound size={20} />} text="Attendance Report" />
         <SidebarLink to="/admin/dashbaord/paymentplan" icon={<Dumbbell size={20} />} text="Membership" />
